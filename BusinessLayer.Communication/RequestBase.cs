@@ -1,6 +1,6 @@
 ﻿namespace BusinessLayer.Communication
 {
-    public abstract class UnifiedResponse<>
+    public abstract class RequestBase
     {
     }
 }

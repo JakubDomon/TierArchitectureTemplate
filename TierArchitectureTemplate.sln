@@ -9,11 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TierArchitectureTemplate.Bu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TierArchitectureTemplate.DataAccessLayer", "TierArchitectureTemplate.DataAccessLayer", "{5216ACD1-DFFB-44A6-B64C-CE4969257A14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer.Logic", "TierArchitectureTemplate.BusinessLayer\BusinessLayer.Logic.csproj", "{BF1B8C72-AD44-436E-9D40-8FAF0C697179}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer.Logic", "TierArchitectureTemplate.BusinessLayer\BusinessLayer.Logic.csproj", "{BF1B8C72-AD44-436E-9D40-8FAF0C697179}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer.Models", "BusinessLayer.Models\BusinessLayer.Models.csproj", "{E6369D0D-FAE7-4DDD-A7BB-6FF5A0386A7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer.Models", "BusinessLayer.Models\BusinessLayer.Models.csproj", "{E6369D0D-FAE7-4DDD-A7BB-6FF5A0386A7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer.Communication", "BusinessLayer.Communication\BusinessLayer.Communication.csproj", "{5D66C52A-5AF2-4A8B-82CF-4EE70CF35BDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer.Communication", "BusinessLayer.Communication\BusinessLayer.Communication.csproj", "{5D66C52A-5AF2-4A8B-82CF-4EE70CF35BDF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{4CBD3D9B-FD78-47DF-8D63-C0CE819EE8AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{E74BDF98-9456-462E-BFF7-3703F4A4EAFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{2A835AE3-4756-4C1F-93FD-6A87B5DC1E1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer.Logic.Tests", "BusinessLayer.Logic.Tests\BusinessLayer.Logic.Tests.csproj", "{3FF410CA-0DAE-43C7-8BCF-B0175D294495}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +45,22 @@ Global
 		{5D66C52A-5AF2-4A8B-82CF-4EE70CF35BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D66C52A-5AF2-4A8B-82CF-4EE70CF35BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D66C52A-5AF2-4A8B-82CF-4EE70CF35BDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FF410CA-0DAE-43C7-8BCF-B0175D294495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FF410CA-0DAE-43C7-8BCF-B0175D294495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FF410CA-0DAE-43C7-8BCF-B0175D294495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FF410CA-0DAE-43C7-8BCF-B0175D294495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{BF1B8C72-AD44-436E-9D40-8FAF0C697179} = {ACCD6113-0ED2-436C-B782-9F8F97A62383}
-		{E6369D0D-FAE7-4DDD-A7BB-6FF5A0386A7B} = {ACCD6113-0ED2-436C-B782-9F8F97A62383}
-		{5D66C52A-5AF2-4A8B-82CF-4EE70CF35BDF} = {ACCD6113-0ED2-436C-B782-9F8F97A62383}
+		{BF1B8C72-AD44-436E-9D40-8FAF0C697179} = {E74BDF98-9456-462E-BFF7-3703F4A4EAFD}
+		{E6369D0D-FAE7-4DDD-A7BB-6FF5A0386A7B} = {2A835AE3-4756-4C1F-93FD-6A87B5DC1E1B}
+		{5D66C52A-5AF2-4A8B-82CF-4EE70CF35BDF} = {4CBD3D9B-FD78-47DF-8D63-C0CE819EE8AA}
+		{4CBD3D9B-FD78-47DF-8D63-C0CE819EE8AA} = {ACCD6113-0ED2-436C-B782-9F8F97A62383}
+		{E74BDF98-9456-462E-BFF7-3703F4A4EAFD} = {ACCD6113-0ED2-436C-B782-9F8F97A62383}
+		{2A835AE3-4756-4C1F-93FD-6A87B5DC1E1B} = {ACCD6113-0ED2-436C-B782-9F8F97A62383}
+		{3FF410CA-0DAE-43C7-8BCF-B0175D294495} = {E74BDF98-9456-462E-BFF7-3703F4A4EAFD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C855C03C-2C4F-4DF7-9DAB-389F4AE0662B}
