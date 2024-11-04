@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Handlers\Providers\" />
+    <Folder Include="Common\Validators\Concrete\Membership\" />
     <Folder Include="Modules\" />
     <Folder Include="Resources\Messages\" />
   </ItemGroup>
