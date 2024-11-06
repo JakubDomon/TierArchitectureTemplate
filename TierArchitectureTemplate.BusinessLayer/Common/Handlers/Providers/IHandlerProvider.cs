@@ -1,4 +1,4 @@
-﻿using BusinessLayer.Communication;
+﻿using BusinessLayer.Logic.Common.Communication;
 
 namespace BusinessLayer.Logic.Common.Handlers.Providers
 {
@@ -7,6 +7,5 @@ namespace BusinessLayer.Logic.Common.Handlers.Providers
         public IHandler<Input, Output> GetHandler<Input, Output>()
             where Input : RequestBase
             where Output : ResponseBase;
-
     }
 }

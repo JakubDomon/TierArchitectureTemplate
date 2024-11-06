@@ -1,4 +1,4 @@
-﻿using BusinessLayer.Communication;
+﻿using BusinessLayer.Logic.Common.Communication;
 using System.Reflection;
 
 namespace BusinessLayer.Logic.Common.Handlers.Providers
@@ -47,5 +47,6 @@ namespace BusinessLayer.Logic.Common.Handlers.Providers
 
                 handlers[(interfaceType.GenericTypeArguments.First(), interfaceType.GenericTypeArguments.Last())] = handlerType;
             }
+        }
     }
 }
