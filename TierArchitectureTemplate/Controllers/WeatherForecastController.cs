@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using TierArchitectureTemplate.API;
 
-namespace Mototrippo.Controllers
+namespace TierArchitectureTemplate.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

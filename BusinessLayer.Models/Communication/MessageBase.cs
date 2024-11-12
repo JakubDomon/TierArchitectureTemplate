@@ -1,6 +1,6 @@
 ﻿using BusinessLayer.Models.Communication.Enums;
 
-namespace BusinessLayer.Models.Communication.Concrete
+namespace BusinessLayer.Models.Communication
 {
     public abstract class MessageBase(string code, string message) : IMessage
     {

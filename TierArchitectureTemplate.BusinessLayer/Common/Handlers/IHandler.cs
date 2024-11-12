@@ -6,6 +6,6 @@ namespace BusinessLayer.Logic.Common.Handlers
         where Input : RequestBase
         where Output : ResponseBase
     {
-        public Task<Output> HandleAsync(Input request);
+        public Task<Output?> HandleAsync(Input request);
     }
 }

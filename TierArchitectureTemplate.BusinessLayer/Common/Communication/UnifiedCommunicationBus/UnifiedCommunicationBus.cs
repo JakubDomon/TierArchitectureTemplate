@@ -2,7 +2,6 @@
 using BusinessLayer.Logic.Common.Communication.UnifiedCommunicationBus.Helpers;
 using BusinessLayer.Logic.Common.Handlers.Providers;
 using BusinessLayer.Logic.Common.Validators.Providers;
-using BusinessLayer.Models.Communication;
 using BusinessLayer.Models.Communication.Concrete.Validation;
 
 namespace BusinessLayer.Logic.Common.Communication.UnifiedCommunicationBus

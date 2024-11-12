@@ -5,13 +5,25 @@ namespace BusinessLayer.Logic.Common.Handlers
         where Input : RequestBase
         where Output : ResponseBase, new()
     {
-        public HandlerBase() { }
-
-        public async Task<Output> HandleAsync(Input request)
+        internal HandlerBase() { }
+        public async Task<Output?> HandleAsync(Input request)
         {
-            return await HandleInternalAsync(request);
+            try
+            {
+                return await HandleInternalAsync(request);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                return null;
+            }
         }
 
         protected abstract Task<Output> HandleInternalAsync(Input request);
+
+        private void HandleException(Exception ex)
+        {
+
+        }
     }
 }
