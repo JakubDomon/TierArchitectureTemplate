@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using DataAccessLayer.DTO.Membership;
 using DataAccessLayer.Entities.Membership;
+using DataAccessLayer.Utils.UpdateHelper;
 using Microsoft.AspNetCore.Identity;
 
 namespace DataAccessLayer.Services.Membership
 {
-    public class UserService : IUserService
+    public class UserService : IUserRepository
     {
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
@@ -42,14 +43,43 @@ namespace DataAccessLayer.Services.Membership
             return false;
         }
 
-        public Task<UserDTO?> GetByIdAsync(Guid id)
+        public async Task<UserDTO?> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            User? user = await _userManager.FindByIdAsync(id.ToString());
+
+            return user != null
+                ? _mapper.Map<UserDTO>(user)
+                : default;
         }
 
-        public Task<UserDTO?> UpdateAsync(Guid id, UserDTO userDTO)
+        public async Task<UserDTO?> UpdateAsync(Guid id, UserDTO userDTO)
         {
-            throw new NotImplementedException();
+            User? user = await _userManager.FindByIdAsync(id.ToString());
+
+            if(user == null) 
+                return default;
+
+            User userNewData = _mapper.Map<User>(userDTO);
+
+            user.Update(userNewData)
+                .UpdateProperty(u => u.FirstName)
+                .UpdateProperty(u => u.LastName)
+                .UpdateProperty(u => u.Email)
+                .UpdateProperty(u => u.PhoneNumber)
+                .UpdateProperty(u => u.UserName)
+                .UpdateProperty(u => u.PasswordHash)
+                .ApplyUpdate();
+
+            IdentityResult result = await _userManager.UpdateAsync(user);
+            
+            return result.Succeeded
+                ? _mapper.Map<UserDTO>(user)
+                : default;
+        }
+
+        private void UpdateUserFields(User dbUser, User newUserData)
+        {
+
         }
     }
 }

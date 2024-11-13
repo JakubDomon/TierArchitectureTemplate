@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Services.Membership
 {
-    public interface IUserService
+    public interface IUserRepository
     {
         public Task<UserDTO?> GetByIdAsync(Guid id);
         public Task<UserDTO?> CreateAsync(UserDTO userDTO);
