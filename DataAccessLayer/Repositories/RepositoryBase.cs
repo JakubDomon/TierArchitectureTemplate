@@ -5,8 +5,7 @@ namespace DataAccessLayer.Repositories
 {
     public abstract class RepositoryBase
     {
-        protected DataOperationResult<T> CreateSuccessResponse<T>(T? data)
-            where T : BaseDTO 
+        protected DataOperationResult<T> CreateSuccessResponse<T>(T? data) 
         {
             return new()
             {
@@ -16,7 +15,6 @@ namespace DataAccessLayer.Repositories
         }
 
         protected DataOperationResult<T> CreateErrorResponse<T>()
-            where T : BaseDTO
         {
             return new()
             {
