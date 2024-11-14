@@ -1,33 +1,43 @@
 ﻿using AutoMapper;
+using DataAccessLayer.DTO.CommunicationObjects;
 using DataAccessLayer.DTO.Membership;
 using DataAccessLayer.Entities.Membership;
 using DataAccessLayer.Utils.UpdateHelper;
 using Microsoft.AspNetCore.Identity;
 
-namespace DataAccessLayer.Services.Membership
+namespace DataAccessLayer.Repositories.Membership
 {
-    public class UserService : IUserRepository
+    public class UserRepository : RepositoryBase, IUserRepository
     {
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
 
-        internal UserService(IMapper mapper, UserManager<User> userManager)
+        internal UserRepository(IMapper mapper, UserManager<User> userManager)
         {
             _mapper = mapper;
             _userManager = userManager;
         }
 
-        public async Task<UserDTO?> CreateAsync(UserDTO userDTO)
+        public async Task<DataOperationResult<UserDTO>> GetByIdAsync(Guid id)
+        {
+            User? user = await _userManager.FindByIdAsync(id.ToString());
+
+            return user != null
+                ? CreateSuccessResponse(_mapper.Map<UserDTO>(user))
+                : CreateErrorResponse<UserDTO>();
+        }
+
+        public async Task<DataOperationResult<UserDTO>> CreateAsync(UserDTO userDTO)
         {
             User user = _mapper.Map<User>(userDTO);
             IdentityResult result = await _userManager.CreateAsync(user, userDTO.Password ?? string.Empty);
 
             if (result.Succeeded)
             {
-                return userDTO;
+                return CreateSuccessResponse(_mapper.Map<UserDTO>(user));
             }
 
-            return default;
+            return CreateErrorResponse<UserDTO>();
         }
 
         public async Task<bool> DeleteAsync(Guid id)
@@ -39,25 +49,16 @@ namespace DataAccessLayer.Services.Membership
                 IdentityResult result = await _userManager.DeleteAsync(user);
                 return result.Succeeded;
             }
-            
+
             return false;
         }
 
-        public async Task<UserDTO?> GetByIdAsync(Guid id)
+        public async Task<DataOperationResult<UserDTO>> UpdateAsync(Guid id, UserDTO userDTO)
         {
             User? user = await _userManager.FindByIdAsync(id.ToString());
 
-            return user != null
-                ? _mapper.Map<UserDTO>(user)
-                : default;
-        }
-
-        public async Task<UserDTO?> UpdateAsync(Guid id, UserDTO userDTO)
-        {
-            User? user = await _userManager.FindByIdAsync(id.ToString());
-
-            if(user == null) 
-                return default;
+            if (user == null)
+                return CreateErrorResponse<UserDTO>();
 
             User userNewData = _mapper.Map<User>(userDTO);
 
@@ -71,15 +72,10 @@ namespace DataAccessLayer.Services.Membership
                 .ApplyUpdate();
 
             IdentityResult result = await _userManager.UpdateAsync(user);
-            
+
             return result.Succeeded
-                ? _mapper.Map<UserDTO>(user)
-                : default;
-        }
-
-        private void UpdateUserFields(User dbUser, User newUserData)
-        {
-
+                ? CreateSuccessResponse(_mapper.Map<UserDTO>(user))
+                : CreateErrorResponse<UserDTO>();
         }
     }
 }
