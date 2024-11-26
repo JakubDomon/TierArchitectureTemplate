@@ -3,6 +3,7 @@ using DataAccessLayer.Entities.Membership;
 using Microsoft.Extensions.DependencyInjection;
 using DataAccessLayer.Contexts;
 using System.Reflection;
+using AutoMapper.Extensions.ExpressionMapping;
 
 namespace DataAccessLayer.Configuration
 {
@@ -11,7 +12,10 @@ namespace DataAccessLayer.Configuration
         public static void RegisterBusinessLogicDI(this IServiceCollection services)
         {
             // Automapper
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(config => 
+            {
+                config.AddExpressionMapping();
+            }, Assembly.GetExecutingAssembly());
 
             // Database contexts
             services.AddIdentityCore<User>()

@@ -2,7 +2,6 @@
 using DataAccessLayer.DTO.CommunicationObjects;
 using DataAccessLayer.DTO.Membership;
 using DataAccessLayer.Entities.Membership;
-using DataAccessLayer.Utils.UpdateHelper;
 using Microsoft.AspNetCore.Identity;
 
 namespace DataAccessLayer.Repositories.Membership
@@ -62,20 +61,26 @@ namespace DataAccessLayer.Repositories.Membership
 
             User userNewData = _mapper.Map<User>(userDTO);
 
-            user.Update(userNewData)
-                .UpdateProperty(u => u.FirstName)
-                .UpdateProperty(u => u.LastName)
-                .UpdateProperty(u => u.Email)
-                .UpdateProperty(u => u.PhoneNumber)
-                .UpdateProperty(u => u.UserName)
-                .UpdateProperty(u => u.PasswordHash)
-                .ApplyUpdate();
+            UpdateUserEntity(user, userNewData);
 
             IdentityResult result = await _userManager.UpdateAsync(user);
 
             return result.Succeeded
                 ? CreateSuccessResponse(_mapper.Map<UserDTO>(user))
                 : CreateErrorResponse<UserDTO>();
+        }
+
+        private void UpdateUserEntity(User user, User userNewData)
+        {
+            if(user == null) 
+                return;
+
+            user.FirstName = userNewData.FirstName;
+            user.LastName = userNewData.LastName;
+            user.Email = userNewData.Email;
+            user.PhoneNumber = userNewData.PhoneNumber;
+            user.UserName = userNewData.UserName;
+            user.PasswordHash = userNewData.PasswordHash;
         }
     }
 }

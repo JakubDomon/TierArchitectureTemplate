@@ -1,8 +1,6 @@
-﻿using DataAccessLayer.Utils.UpdateHelper;
-
-namespace DataAccessLayer.Entities
+﻿namespace DataAccessLayer.Entities
 {
-    internal abstract class BaseEntity : IFluentUpdatable
+    internal abstract class BaseEntity
     {
         public Guid Id { get; set; }
         public DateTime CreatedAt { get; set; }

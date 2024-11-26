@@ -1,9 +1,8 @@
-﻿using DataAccessLayer.Utils.UpdateHelper;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace DataAccessLayer.Entities.Membership
 {
-    internal class User : IdentityUser, IFluentUpdatable
+    internal class User : IdentityUser
     {
         public required string FirstName { get; set; }
         public required string LastName { get; set; }

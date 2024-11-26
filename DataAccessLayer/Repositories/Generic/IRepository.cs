@@ -1,20 +1,21 @@
-﻿using DataAccessLayer.DTO.Common.GenericRepositories;
+﻿using DataAccessLayer.DTO;
 using DataAccessLayer.DTO.CommunicationObjects;
 using System.Linq.Expressions;
 
 namespace DataAccessLayer.Repositories.Common
 {
-    public interface IRepository<TEntity>
-        where TEntity : IGenericRepositoryModel
+    public interface IRepository<TEntity, TDto>
+        where TEntity : class
+        where TDto : BaseDTO
     {
-        Task<DataOperationResult<IQueryable<TEntity>>> GetAll(FindOptions? findOptions = null);
-        Task<DataOperationResult<TEntity>> FindOne(Expression<Func<TEntity, bool>> predicate, FindOptions? findOptions = null);
-        Task<DataOperationResult<IQueryable<TEntity>>> Find(Expression<Func<TEntity, bool>> predicate, FindOptions? findOptions = null);
-        Task<DataOperationResult<TEntity>> Add(TEntity entity);
-        Task<DataOperationResult<TEntity>> Update(TEntity entity);
-        Task<DataOperationResult<TEntity?>> Delete(Guid id);
-        Task<DataOperationResult<TEntity?>> DeleteMany(Expression<Func<TEntity, bool>> predicate);
-        bool Any();
-        int Count();
+        public Task<DataOperationResult<IEnumerable<TDto>>> GetAllAsync(FindOptions? findOptions = null);
+        public Task<DataOperationResult<TDto>> FindOneAsync(Expression<Func<TDto, bool>> predicate, FindOptions? findOptions = null);
+        public Task<DataOperationResult<IEnumerable<TDto>>> FindAsync(Expression<Func<TDto, bool>> predicate, FindOptions? findOptions = null);
+        public Task<DataOperationResult<TDto>> AddAsync(TDto dto);
+        public Task<DataOperationResult<TDto>> UpdateAsync(TDto dto);
+        public bool Delete(Guid id);
+        public bool DeleteMany(Expression<Func<TDto, bool>> predicate);
+        public Task<bool> AnyAsync();
+        public Task<int> CountAsync();
     }
 }
