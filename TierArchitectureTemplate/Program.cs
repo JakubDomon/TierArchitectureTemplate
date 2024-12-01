@@ -1,6 +1,7 @@
 using DotNetEnv;
 using BusinessLayer.Logic.Configuration;
 using DataAccessLayer.Configuration;
+using TierArchitectureTemplate.API.Middleware.Exception;
 
 Env.Load();
 
@@ -30,5 +31,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Middlewares
+app.UseMiddleware<ExceptionHandlingMiddleware>();    
 
 app.Run();

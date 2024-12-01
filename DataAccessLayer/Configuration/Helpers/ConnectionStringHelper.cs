@@ -6,5 +6,7 @@ namespace DataAccessLayer.Configuration.Helpers
     {
         public string MembershipConnectionString { get => configuration.GetConnectionString("MembershipConnectionString") 
                 ?? throw new ArgumentException("No connection string provided for 'MembershipConnectionString'"); }
+        public string LoggingConnectionString { get => configuration.GetConnectionString("LoggingConnectionString")
+                ?? throw new ArgumentException("No connection string provided for 'LoggingConnectionString'"); }
     }
 }
