@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Logic.Common.Handlers.Providers;
 using BusinessLayer.Logic.Common.Validators.Providers;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace BusinessLayer.Logic.Configuration
 {
@@ -8,8 +9,10 @@ namespace BusinessLayer.Logic.Configuration
     {
         public static void RegisterBusinessLogicDI(this IServiceCollection services)
         {
-            services.AddSingleton<IValidatorProvider, ValidatorProvider>();
-            services.AddSingleton<IHandlerProvider, HandlerProvider>();
+            var assembly = Assembly.GetExecutingAssembly();
+
+            services.AddSingleton<IValidatorProvider>(provider => { return new ValidatorProvider(assembly); });
+            services.AddSingleton<IHandlerProvider>(provider => { return new HandlerProvider(assembly); });
         }
     }
 }

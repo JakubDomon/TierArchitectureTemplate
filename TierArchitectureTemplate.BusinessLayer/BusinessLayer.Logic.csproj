@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="TierArchitectureTemplate.API" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <Folder Include="Common\Validators\Concrete\Membership\" />
   </ItemGroup>
 
@@ -18,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer.Models\BusinessLayer.Models.csproj" />
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

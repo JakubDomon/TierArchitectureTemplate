@@ -1,4 +1,6 @@
 using DotNetEnv;
+using BusinessLayer.Logic.Configuration;
+using DataAccessLayer.Configuration;
 
 Env.Load();
 
@@ -10,6 +12,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.RegisterBusinessLogicDI();
+builder.Services.RegisterDataAccessDI();
 
 var app = builder.Build();
 

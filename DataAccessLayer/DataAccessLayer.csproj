@@ -23,6 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="TierArchitectureTemplate.API" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer.DTO\DataAccessLayer.DTO.csproj" />
   </ItemGroup>
 

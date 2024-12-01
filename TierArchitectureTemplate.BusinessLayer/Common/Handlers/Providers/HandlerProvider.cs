@@ -7,7 +7,7 @@ namespace BusinessLayer.Logic.Common.Handlers.Providers
     {
         private readonly Dictionary<(Type, Type), Type> handlers = [];
 
-        public HandlerProvider(Assembly assembly)
+        internal HandlerProvider(Assembly assembly)
         {
             LoadHandlersFromAssembly(assembly);
         }

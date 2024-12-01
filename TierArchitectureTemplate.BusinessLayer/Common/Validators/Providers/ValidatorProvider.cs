@@ -7,7 +7,7 @@ namespace BusinessLayer.Logic.Common.Validators.Providers
     {
         private readonly Dictionary<Type, Type> validators = [];
 
-        public ValidatorProvider(Assembly assembly)
+        internal ValidatorProvider(Assembly assembly)
         {
             LoadValidatorsFromAssembly(assembly);
         }

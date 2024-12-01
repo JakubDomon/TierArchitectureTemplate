@@ -9,7 +9,7 @@ namespace DataAccessLayer.Configuration
 {
     public static class ServiceCollectionExtensions
     {
-        public static void RegisterBusinessLogicDI(this IServiceCollection services)
+        public static void RegisterDataAccessDI(this IServiceCollection services)
         {
             // Automapper
             services.AddAutoMapper(config => 
@@ -18,6 +18,7 @@ namespace DataAccessLayer.Configuration
             }, Assembly.GetExecutingAssembly());
 
             // Database contexts
+            services.AddDbContext<MembershipContext>();
             services.AddIdentityCore<User>()
                 .AddRoles<Role>()
                 .AddEntityFrameworkStores<MembershipContext>();
