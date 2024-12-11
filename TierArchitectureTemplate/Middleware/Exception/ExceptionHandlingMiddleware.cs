@@ -1,5 +1,5 @@
-﻿using System.Net;
-using TierArchitectureTemplate.API.Logging;
+﻿using BusinessLayer.Logic.Modules.Logging;
+using System.Net;
 using TierArchitectureTemplate.API.Middleware.Exception.DTO;
 
 namespace TierArchitectureTemplate.API.Middleware.Exception

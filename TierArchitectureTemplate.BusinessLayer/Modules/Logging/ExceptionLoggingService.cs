@@ -1,4 +1,6 @@
-﻿namespace TierArchitectureTemplate.API.Logging
+﻿using Microsoft.Extensions.Logging;
+
+namespace BusinessLayer.Logic.Modules.Logging
 {
     public class ExceptionLoggingService() : IExceptionLoggingService
     {
