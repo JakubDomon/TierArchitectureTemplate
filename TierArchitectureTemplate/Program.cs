@@ -1,19 +1,27 @@
-using DotNetEnv;
 using BusinessLayer.Logic.Configuration;
 using DataAccessLayer.Configuration;
 using TierArchitectureTemplate.API.Middleware.Exception;
-
-Env.Load();
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// DotNetEnv
+DotNetEnv.Env.Load();
+builder.Configuration.AddEnvironmentVariables();
+
+// Add Serilog support
+builder.Logging.ClearProviders();
+builder.Host.UseSerilog((context, configuration) => 
+    configuration.ReadFrom.Configuration(context.Configuration));
+builder.Logging.AddSerilog();
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add services to the container.
 builder.Services.RegisterBusinessLogicDI();
 builder.Services.RegisterDataAccessDI();
 

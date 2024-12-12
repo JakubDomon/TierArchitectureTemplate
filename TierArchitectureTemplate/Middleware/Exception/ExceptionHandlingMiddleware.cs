@@ -1,10 +1,9 @@
-﻿using BusinessLayer.Logic.Modules.Logging;
-using System.Net;
+﻿using System.Net;
 using TierArchitectureTemplate.API.Middleware.Exception.DTO;
 
 namespace TierArchitectureTemplate.API.Middleware.Exception
 {
-    public class ExceptionHandlingMiddleware(RequestDelegate next, IExceptionLoggingService loggingService)
+    public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger logger)
     {
         public async Task InvokeAsync(HttpContext context)
         {
@@ -38,7 +37,7 @@ namespace TierArchitectureTemplate.API.Middleware.Exception
 
         private async Task LogExceptionAsync(System.Exception exception)
         {
-            await loggingService.LogExceptionAsync(exception, LogLevel.Error);
+            await Task.Run(() => logger.LogError(exception, "Exception occured"));
         }
     }
 }
