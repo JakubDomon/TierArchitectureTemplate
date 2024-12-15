@@ -2,18 +2,17 @@
 using AutoMapper.QueryableExtensions;
 using DataAccessLayer.DTO;
 using DataAccessLayer.DTO.CommunicationObjects;
-using DataAccessLayer.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace DataAccessLayer.Repositories
+namespace DataAccessLayer.Repositories.Generic
 {
     public abstract class Repository<TEntity, TDto> : RepositoryBase, IRepository<TEntity, TDto>
         where TEntity : class
         where TDto : BaseDTO
     {
         private readonly DbContext _dbContext;
-        private readonly DbSet<TEntity> _dbSet; 
+        private readonly DbSet<TEntity> _dbSet;
         private readonly IMapper _mapper;
 
         internal Repository(DbContext dbContext, IMapper mapper)
@@ -27,7 +26,7 @@ namespace DataAccessLayer.Repositories
         {
             var entity = _mapper.Map<TEntity>(dto);
             await _dbSet.AddAsync(entity);
-            
+
             return await _dbContext.SaveChangesAsync() > 0
                 ? CreateSuccessResponse(_mapper.Map<TDto>(entity))
                 : CreateErrorResponse<TDto>();
@@ -47,11 +46,11 @@ namespace DataAccessLayer.Repositories
         {
             var entity = _dbSet.Find(id);
 
-            if(entity == null)
+            if (entity == null)
                 return false;
 
             _dbSet.Remove(entity);
-            
+
             return _dbContext.SaveChanges() > 0;
         }
 
@@ -60,7 +59,7 @@ namespace DataAccessLayer.Repositories
             var entityPredicate = _mapper.Map<Expression<Func<TEntity, bool>>>(predicate);
             var entities = _dbSet.Where(entityPredicate);
 
-            if(!entities.Any()) 
+            if (!entities.Any())
                 return false;
 
             _dbSet.RemoveRange(entities.ToList());

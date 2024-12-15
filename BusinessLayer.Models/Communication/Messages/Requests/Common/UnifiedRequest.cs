@@ -1,4 +1,4 @@
-﻿namespace BusinessLayer.Logic.Common.Communication.Common
+﻿namespace BusinessLayer.Models.Communication.Messages.Requests.Common
 {
     public class UnifiedRequest<RequestData>
         where RequestData : RequestBase

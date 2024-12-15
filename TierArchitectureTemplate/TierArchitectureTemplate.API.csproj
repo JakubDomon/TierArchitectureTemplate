@@ -17,12 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
+    <ProjectReference Include="..\TierArchitectureTemplate.BusinessLayer\BusinessLayer.Logic.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
-    <ProjectReference Include="..\TierArchitectureTemplate.BusinessLayer\BusinessLayer.Logic.csproj" />
+    <Folder Include="Controllers\Membership\" />
   </ItemGroup>
 
 </Project>

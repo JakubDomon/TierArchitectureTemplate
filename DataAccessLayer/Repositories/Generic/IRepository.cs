@@ -2,7 +2,7 @@
 using DataAccessLayer.DTO.CommunicationObjects;
 using System.Linq.Expressions;
 
-namespace DataAccessLayer.Repositories.Common
+namespace DataAccessLayer.Repositories.Generic
 {
     public interface IRepository<TEntity, TDto>
         where TEntity : class

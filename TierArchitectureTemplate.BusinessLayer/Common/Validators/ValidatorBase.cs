@@ -1,6 +1,6 @@
-﻿using BusinessLayer.Logic.Common.Communication;
-using BusinessLayer.Models.Communication;
-using BusinessLayer.Models.Communication.Concrete.Validation;
+﻿using BusinessLayer.Models.Communication.Messages.Messages;
+using BusinessLayer.Models.Communication.Messages.Requests;
+using BusinessLayer.Models.Communication.Validation.Specific;
 
 namespace BusinessLayer.Logic.Common.Validators
 {

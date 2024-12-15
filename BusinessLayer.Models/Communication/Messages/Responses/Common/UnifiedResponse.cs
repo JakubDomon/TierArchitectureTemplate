@@ -1,7 +1,8 @@
-﻿using BusinessLayer.Models.Communication;
-using BusinessLayer.Models.Communication.Enums;
+﻿using BusinessLayer.Models.Communication.Messages.Messages;
+using BusinessLayer.Models.Communication.Messages.Messages.Enums;
+using BusinessLayer.Models.Communication.Messages.Responses;
 
-namespace BusinessLayer.Logic.Common.Communication.Common
+namespace BusinessLayer.Models.Communication.Messages.Responses.Common
 {
     public class UnifiedResponse<ResponseData>
         where ResponseData : ResponseBase

@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Logic.Common.Communication;
+﻿using BusinessLayer.Models.Communication.Messages.Requests;
+using BusinessLayer.Models.Communication.Messages.Responses;
 
 namespace BusinessLayer.Logic.Common.Handlers
 {

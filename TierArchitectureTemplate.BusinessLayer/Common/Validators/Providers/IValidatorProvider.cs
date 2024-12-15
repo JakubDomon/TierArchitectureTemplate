@@ -1,4 +1,4 @@
-﻿using BusinessLayer.Logic.Common.Communication;
+﻿using BusinessLayer.Models.Communication.Messages.Requests;
 
 namespace BusinessLayer.Logic.Common.Validators.Providers
 {

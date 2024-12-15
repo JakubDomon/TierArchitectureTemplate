@@ -1,5 +1,6 @@
-﻿using BusinessLayer.Logic.Common.Communication.Common;
-using BusinessLayer.Models.Communication.Concrete.Validation;
+﻿using BusinessLayer.Models.Communication.Messages.Responses;
+using BusinessLayer.Models.Communication.Messages.Responses.Common;
+using BusinessLayer.Models.Communication.Validation.Specific;
 
 namespace BusinessLayer.Logic.Common.Communication.UnifiedCommunicationBus.Helpers
 {

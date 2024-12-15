@@ -1,6 +1,7 @@
-﻿using BusinessLayer.Models.Communication.Enums;
+﻿using BusinessLayer.Models.Communication.Messages.Messages;
+using BusinessLayer.Models.Communication.Messages.Messages.Enums;
 
-namespace BusinessLayer.Models.Communication.Concrete.Validation
+namespace BusinessLayer.Models.Communication.Validation.Specific
 {
     public class ValidationResult
     {

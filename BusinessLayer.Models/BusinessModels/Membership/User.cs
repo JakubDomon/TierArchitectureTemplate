@@ -1,4 +1,4 @@
-﻿namespace BusinessLayer.Models.Entities.Membership
+﻿namespace BusinessLayer.Models.BusinessModels.Membership
 {
     public class User : ModelBase
     {

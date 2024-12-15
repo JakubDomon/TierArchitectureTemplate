@@ -1,4 +1,6 @@
-﻿namespace BusinessLayer.Logic.Common.Communication.Concrete.Membership
+﻿using BusinessLayer.Models.Communication.Messages.Requests;
+
+namespace BusinessLayer.Models.Communication.Messages.Requests.Specific.Membership
 {
     public class RegisterUserRequest : RequestBase
     {

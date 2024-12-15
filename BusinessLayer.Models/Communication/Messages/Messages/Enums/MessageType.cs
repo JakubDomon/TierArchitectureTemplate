@@ -1,4 +1,4 @@
-﻿namespace BusinessLayer.Models.Communication.Enums
+﻿namespace BusinessLayer.Models.Communication.Messages.Messages.Enums
 {
     public enum MessageType
     {
