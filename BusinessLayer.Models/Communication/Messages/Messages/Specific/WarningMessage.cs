@@ -2,7 +2,7 @@
 
 namespace BusinessLayer.Models.Communication.Messages.Messages.Specific
 {
-    public class WarningMessage(string code, string message) : MessageBase(code, message)
+    public record WarningMessage : MessageBase
     {
         public override MessageType Type => MessageType.Warning;
     }

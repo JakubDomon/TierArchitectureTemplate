@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Models.Communication.Messages.Requests;
+﻿using BusinessLayer.Models.Communication.Handlers.Specific;
+using BusinessLayer.Models.Communication.Messages.Requests;
 using BusinessLayer.Models.Communication.Messages.Responses;
 
 namespace BusinessLayer.Logic.Common.Handlers
@@ -7,6 +8,6 @@ namespace BusinessLayer.Logic.Common.Handlers
         where Input : RequestBase
         where Output : ResponseBase
     {
-        public Task<Output?> HandleAsync(Input request);
+        public Task<HandlerResult<Output>> HandleAsync(Input request);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace BusinessLayer.Models.Communication.Messages.Messages.Specific
 {
-    public class ErrorMessage(string code, string message) : MessageBase(code, message)
+    public record ErrorMessage : MessageBase
     {
         public override MessageType Type => MessageType.Error;
     }
