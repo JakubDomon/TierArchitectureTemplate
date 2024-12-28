@@ -2,10 +2,8 @@
 
 namespace BusinessLayer.Models.Communication.Messages.Messages
 {
-    public abstract record MessageBase : IMessage
+    public abstract record MessageBase(string Code, string Message) : IMessage
     {
-        public required string Code { get; set; }
-        public required string Message { get; set; }
         public abstract MessageType Type { get; }
     }
 }

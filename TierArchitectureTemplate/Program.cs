@@ -35,8 +35,8 @@ builder.Services.AddSwaggerGen(o =>
 });
 
 // Add services to the container.
-builder.Services.RegisterBusinessLogicDI();
-builder.Services.RegisterDataAccessDI();
+builder.Services.RegisterBusinessLogicServices();
+builder.Services.RegisterDataAccessServices();
 
 var app = builder.Build();
 

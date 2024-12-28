@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Logic.Common.Communication.UnifiedCommunicationBus.Helpers;
 using BusinessLayer.Logic.Common.Handlers.Providers;
 using BusinessLayer.Logic.Common.Validators.Providers;
+using BusinessLayer.Models.Communication.Handlers.Specific;
 using BusinessLayer.Models.Communication.Messages.Requests;
 using BusinessLayer.Models.Communication.Messages.Requests.Common;
 using BusinessLayer.Models.Communication.Messages.Responses;
@@ -31,12 +32,9 @@ namespace BusinessLayer.Logic.Common.Communication.UnifiedCommunicationBus
                 return UnifiedCommunicationHelper.CreateValidationErrorResponse<Output>(validationResult);
             }
 
+            HandlerResult<Output> handlerResult = await _handlerProvider.GetHandler<Input, Output>().HandleAsync(request.Data);
 
-
-            return new UnifiedResponse<Output>
-            {
-                Data = new Output(),
-            };
+            return UnifiedCommunicationHelper.CreateHandlerResponse(handlerResult);
         }
     }
 }

@@ -59,5 +59,14 @@ namespace BusinessLayer.Logic.Resources.Messages {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Użytkownik o podanym loginie już istnieje.
+        /// </summary>
+        internal static string UserAlreadyExists {
+            get {
+                return ResourceManager.GetString("UserAlreadyExists", resourceCulture);
+            }
+        }
     }
 }

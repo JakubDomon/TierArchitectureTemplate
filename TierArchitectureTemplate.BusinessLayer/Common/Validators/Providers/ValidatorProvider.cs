@@ -5,46 +5,21 @@ namespace BusinessLayer.Logic.Common.Validators.Providers
 {
     internal class ValidatorProvider : IValidatorProvider
     {
-        private readonly Dictionary<Type, Type> validators = [];
+        private readonly IServiceProvider _serviceProvider;
 
-        internal ValidatorProvider(Assembly assembly)
+        internal ValidatorProvider(IServiceProvider serviceProvider)
         {
-            LoadValidatorsFromAssembly(assembly);
+            _serviceProvider = serviceProvider;
         }
 
         public IValidator<Input> GetValidator<Input>() where Input : RequestBase
         {
-            if (validators.TryGetValue(typeof(Input), out var validatorType))
-            {
-                var instance = Activator.CreateInstance(validatorType);
+            var validator = _serviceProvider.GetService(typeof(IValidator<Input>));
 
-                if (instance != null)
-                {
-                    return (IValidator<Input>)instance;
-                }
-                else
-                {
-                    throw new InvalidOperationException($"No validator found for input type {typeof(Input).Name}");
-                }
-            }
+            if(validator == null)
+                throw new InvalidOperationException($"No validator found for input type {typeof(Input).Name}");
 
-            throw new InvalidOperationException($"No validator found for input type {typeof(Input).Name}");
-        }
-
-        private void LoadValidatorsFromAssembly(Assembly assembly)
-        {
-            var validatorTypes = assembly.GetTypes()
-                .Where(type => type.GetInterfaces()
-                    .Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IValidator<>)))
-                .ToList();
-
-            foreach(var validatorType in validatorTypes)
-            {
-                var interfaceType = validatorType.GetInterfaces()
-                    .First(i => i.GetGenericTypeDefinition() == typeof(IValidator<>));
-
-                validators[interfaceType.GenericTypeArguments.First()] = validatorType;
-            }
+            return (IValidator<Input>)validator;
         }
     }
 }

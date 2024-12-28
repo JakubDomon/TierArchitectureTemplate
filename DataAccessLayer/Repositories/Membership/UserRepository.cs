@@ -17,7 +17,7 @@ namespace DataAccessLayer.Repositories.Membership
             _userManager = userManager;
         }
 
-        public async Task<DataOperationResult<UserDTO>> GetByIdAsync(Guid id)
+        public async Task<DataOperationResult<UserDTO>> FindByIdAsync(Guid id)
         {
             User? user = await _userManager.FindByIdAsync(id.ToString());
 
@@ -69,6 +69,8 @@ namespace DataAccessLayer.Repositories.Membership
                 ? CreateSuccessResponse(_mapper.Map<UserDTO>(user))
                 : CreateErrorResponse<UserDTO>();
         }
+
+        public async Task<bool> UserExists(string login) => await _userManager.FindByNameAsync(login) != null;
 
         private void UpdateUserEntity(User user, User userNewData)
         {

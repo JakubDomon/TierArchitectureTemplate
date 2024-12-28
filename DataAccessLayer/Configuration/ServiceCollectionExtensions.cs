@@ -9,7 +9,7 @@ namespace DataAccessLayer.Configuration
 {
     public static class ServiceCollectionExtensions
     {
-        public static void RegisterDataAccessDI(this IServiceCollection services)
+        public static void RegisterDataAccessServices(this IServiceCollection services)
         {
             // Automapper
             services.AddAutoMapper(config => 
