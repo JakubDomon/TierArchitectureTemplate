@@ -24,7 +24,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.Logic.csproj" />
+    <ProjectReference Include="..\DataAccess.Logic\DataAccess.Logic.csproj" />
     <ProjectReference Include="..\Domain.Logic\Domain.Logic.csproj" />
   </ItemGroup>
 

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using DataAccess.DTO;
 using DataAccess.DTO.CommunicationObjects;
 using Microsoft.EntityFrameworkCore;
