@@ -1,8 +1,9 @@
 ﻿using BusinessLayer.Models.Communication.Handlers.Specific;
-using BusinessLayer.Models.Communication.Messages.Requests;
-using BusinessLayer.Models.Communication.Messages.Responses;
+using Domain.DTO.Requests;
+using Domain.DTO.Responses;
+using Domain.Logic.Common.Handlers;
 
-namespace BusinessLayer.Logic.Common.Handlers.Providers
+namespace Domain.Logic.Common.Handlers.Providers
 {
     internal class HandlerProvider : IHandlerProvider
     {
@@ -22,7 +23,7 @@ namespace BusinessLayer.Logic.Common.Handlers.Providers
             if (handler == null)
                 throw new InvalidOperationException($"No handler found for types {typeof(Input).Name}, {typeof(Output).Name}");
 
-            return (IHandler<Input, Output>)handler; 
+            return (IHandler<Input, Output>)handler;
         }
     }
 }

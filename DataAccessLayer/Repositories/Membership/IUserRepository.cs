@@ -1,7 +1,7 @@
-﻿using DataAccessLayer.DTO.CommunicationObjects;
-using DataAccessLayer.DTO.Membership;
+﻿using DataAccess.DTO.CommunicationObjects;
+using DataAccess.DTO.Membership;
 
-namespace DataAccessLayer.Repositories.Membership
+namespace DataAccess.Repositories.Membership
 {
     public interface IUserRepository
     {

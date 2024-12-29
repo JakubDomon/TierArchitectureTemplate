@@ -1,8 +1,8 @@
-using BusinessLayer.Logic.Configuration;
-using DataAccessLayer.Configuration;
 using TierArchitectureTemplate.API.Middleware.Exception;
 using Serilog;
 using TierArchitectureTemplate.API.Attributes.Controllers;
+using Domain.Logic.Configuration;
+using DataAccess.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

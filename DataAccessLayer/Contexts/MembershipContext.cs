@@ -1,9 +1,9 @@
-﻿using DataAccessLayer.Configuration.Helpers;
-using DataAccessLayer.Entities.Membership;
+﻿using DataAccess.Configuration.Helpers;
+using DataAccess.Entities.Membership;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccessLayer.Contexts
+namespace DataAccess.Contexts
 {
     internal class MembershipContext(ConnectionStringHelper connectionStringHelper) : IdentityDbContext<User>
     {

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using DataAccessLayer.DTO.Membership;
-using DataAccessLayer.Entities.Membership;
+using DataAccess.DTO.Membership;
+using DataAccess.Entities.Membership;
 
-namespace DataAccessLayer.Mapping.Membership
+namespace DataAccess.Mapping.Membership
 {
     internal class UserProfile : Profile
     {

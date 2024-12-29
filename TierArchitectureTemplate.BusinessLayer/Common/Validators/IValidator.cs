@@ -1,7 +1,7 @@
-﻿using BusinessLayer.Models.Communication.Messages.Requests;
-using BusinessLayer.Models.Communication.Validation.Specific;
+﻿using Domain.DTO.Requests;
+using Domain.Models.Validation.Specific;
 
-namespace BusinessLayer.Logic.Common.Validators
+namespace Domain.Logic.Common.Validators
 {
     internal interface IValidator<Input>
         where Input : RequestBase

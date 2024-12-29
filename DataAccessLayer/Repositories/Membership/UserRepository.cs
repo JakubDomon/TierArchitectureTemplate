@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
-using DataAccessLayer.DTO.CommunicationObjects;
-using DataAccessLayer.DTO.Membership;
-using DataAccessLayer.Entities.Membership;
+using DataAccess.DTO.CommunicationObjects;
+using DataAccess.DTO.Membership;
+using DataAccess.Entities.Membership;
+using DataAccess.Repositories;
 using Microsoft.AspNetCore.Identity;
 
-namespace DataAccessLayer.Repositories.Membership
+namespace DataAccess.Repositories.Membership
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
@@ -74,7 +75,7 @@ namespace DataAccessLayer.Repositories.Membership
 
         private void UpdateUserEntity(User user, User userNewData)
         {
-            if(user == null) 
+            if (user == null)
                 return;
 
             user.FirstName = userNewData.FirstName;

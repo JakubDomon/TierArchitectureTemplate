@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TierArchitectureTemplate.API", "TierArchitectureTemplate\TierArchitectureTemplate.API.csproj", "{07C70978-99E4-478A-8182-23FE63E152E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "TierArchitectureTemplate\API.csproj", "{07C70978-99E4-478A-8182-23FE63E152E2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TierArchitectureTemplate.BusinessLayer", "TierArchitectureTemplate.BusinessLayer", "{ACCD6113-0ED2-436C-B782-9F8F97A62383}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{ACCD6113-0ED2-436C-B782-9F8F97A62383}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TierArchitectureTemplate.DataAccessLayer", "TierArchitectureTemplate.DataAccessLayer", "{5216ACD1-DFFB-44A6-B64C-CE4969257A14}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{5216ACD1-DFFB-44A6-B64C-CE4969257A14}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer.Logic", "TierArchitectureTemplate.BusinessLayer\BusinessLayer.Logic.csproj", "{BF1B8C72-AD44-436E-9D40-8FAF0C697179}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Logic", "TierArchitectureTemplate.BusinessLayer\Domain.Logic.csproj", "{BF1B8C72-AD44-436E-9D40-8FAF0C697179}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer.Models", "BusinessLayer.Models\BusinessLayer.Models.csproj", "{E6369D0D-FAE7-4DDD-A7BB-6FF5A0386A7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.DTO", "BusinessLayer.Models\Domain.DTO.csproj", "{E6369D0D-FAE7-4DDD-A7BB-6FF5A0386A7B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer.Logic.Tests", "BusinessLayer.Logic.Tests\BusinessLayer.Logic.Tests.csproj", "{3FF410CA-0DAE-43C7-8BCF-B0175D294495}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccessLayer\DataAccess.csproj", "{1BCC36A6-7EB0-4516-B0A0-54D7B06782CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{1BCC36A6-7EB0-4516-B0A0-54D7B06782CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.DTO", "DataAccessLayer.DTO\DataAccess.DTO.csproj", "{0551D8D2-E3B1-4AEB-A346-6821AA8F01A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer.DTO", "DataAccessLayer.DTO\DataAccessLayer.DTO.csproj", "{0551D8D2-E3B1-4AEB-A346-6821AA8F01A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Models", "Domain.Models\Domain.Models.csproj", "{20ECDA4F-0A3B-4D73-8B2F-F841433A928B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +37,6 @@ Global
 		{E6369D0D-FAE7-4DDD-A7BB-6FF5A0386A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6369D0D-FAE7-4DDD-A7BB-6FF5A0386A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6369D0D-FAE7-4DDD-A7BB-6FF5A0386A7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3FF410CA-0DAE-43C7-8BCF-B0175D294495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FF410CA-0DAE-43C7-8BCF-B0175D294495}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FF410CA-0DAE-43C7-8BCF-B0175D294495}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FF410CA-0DAE-43C7-8BCF-B0175D294495}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1BCC36A6-7EB0-4516-B0A0-54D7B06782CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1BCC36A6-7EB0-4516-B0A0-54D7B06782CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BCC36A6-7EB0-4516-B0A0-54D7B06782CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,6 +45,10 @@ Global
 		{0551D8D2-E3B1-4AEB-A346-6821AA8F01A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0551D8D2-E3B1-4AEB-A346-6821AA8F01A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0551D8D2-E3B1-4AEB-A346-6821AA8F01A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20ECDA4F-0A3B-4D73-8B2F-F841433A928B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20ECDA4F-0A3B-4D73-8B2F-F841433A928B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20ECDA4F-0A3B-4D73-8B2F-F841433A928B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20ECDA4F-0A3B-4D73-8B2F-F841433A928B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,9 +56,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BF1B8C72-AD44-436E-9D40-8FAF0C697179} = {ACCD6113-0ED2-436C-B782-9F8F97A62383}
 		{E6369D0D-FAE7-4DDD-A7BB-6FF5A0386A7B} = {ACCD6113-0ED2-436C-B782-9F8F97A62383}
-		{3FF410CA-0DAE-43C7-8BCF-B0175D294495} = {ACCD6113-0ED2-436C-B782-9F8F97A62383}
 		{1BCC36A6-7EB0-4516-B0A0-54D7B06782CE} = {5216ACD1-DFFB-44A6-B64C-CE4969257A14}
 		{0551D8D2-E3B1-4AEB-A346-6821AA8F01A1} = {5216ACD1-DFFB-44A6-B64C-CE4969257A14}
+		{20ECDA4F-0A3B-4D73-8B2F-F841433A928B} = {ACCD6113-0ED2-436C-B782-9F8F97A62383}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C855C03C-2C4F-4DF7-9DAB-389F4AE0662B}

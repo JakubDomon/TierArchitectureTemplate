@@ -1,8 +1,8 @@
-﻿using DataAccessLayer.DTO;
-using DataAccessLayer.DTO.CommunicationObjects;
+﻿using DataAccess.DTO;
+using DataAccess.DTO.CommunicationObjects;
 using System.Linq.Expressions;
 
-namespace DataAccessLayer.Repositories.Generic
+namespace DataAccess.Repositories.Generic
 {
     public interface IRepository<TEntity, TDto>
         where TEntity : class

@@ -1,8 +1,8 @@
-﻿using BusinessLayer.Models.Communication.Handlers.Specific;
-using BusinessLayer.Models.Communication.Messages.Messages;
-using BusinessLayer.Models.Communication.Messages.Responses;
+﻿using Domain.DTO.Messages;
+using Domain.DTO.Responses;
+using Domain.Models.Handlers.Specific;
 
-namespace BusinessLayer.Logic.Modules.Handlers.Helpers
+namespace Domain.Logic.Modules.Handlers.Helpers
 {
     internal static class HandlerResultHelper
     {

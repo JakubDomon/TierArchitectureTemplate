@@ -1,7 +1,7 @@
-﻿using BusinessLayer.Models.Communication.Messages.Requests;
+﻿using Domain.DTO.Requests;
 using System.Reflection;
 
-namespace BusinessLayer.Logic.Common.Validators.Providers
+namespace Domain.Logic.Common.Validators.Providers
 {
     internal class ValidatorProvider : IValidatorProvider
     {
@@ -16,7 +16,7 @@ namespace BusinessLayer.Logic.Common.Validators.Providers
         {
             var validator = _serviceProvider.GetService(typeof(IValidator<Input>));
 
-            if(validator == null)
+            if (validator == null)
                 throw new InvalidOperationException($"No validator found for input type {typeof(Input).Name}");
 
             return (IValidator<Input>)validator;

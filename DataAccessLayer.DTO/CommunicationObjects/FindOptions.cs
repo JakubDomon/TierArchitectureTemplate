@@ -1,4 +1,4 @@
-﻿namespace DataAccessLayer.DTO.CommunicationObjects
+﻿namespace DataAccess.DTO.CommunicationObjects
 {
     public class FindOptions
     {

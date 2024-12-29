@@ -1,9 +1,9 @@
-﻿using BusinessLayer.Models.Communication.Messages.Messages;
-using BusinessLayer.Models.Communication.Messages.Messages.Specific;
-using BusinessLayer.Models.Communication.Validation.Enums;
+﻿using Domain.DTO.Messages;
+using Domain.DTO.Messages.Specific;
+using Domain.Models.Validation.Enums;
 using EnumStringValues;
 
-namespace BusinessLayer.Logic.Common.Validators
+namespace Domain.Logic.Common.Validators
 {
     internal abstract class ValidationRuleBase(ValidationScope scope) : IValidationRule
     {

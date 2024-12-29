@@ -1,14 +1,17 @@
 ﻿using AutoMapper;
-using BusinessLayer.Models.BusinessModels.Membership;
-using BusinessLayer.Models.Communication.Messages.Requests.Specific.Membership;
-using DataAccessLayer.DTO.Membership;
+using dalDto = DataAccessLayer.DTO.Membership;
+using domainDto = Domain.DTO.Models.Membership;
+using Domain.Models.BusinessModels.Membership;
+using DataAccess.DTO.Membership;
 
-namespace BusinessLayer.Logic.Mapping.Membership
+namespace Domain.Logic.Mapping.Membership
 {
     public class UserProfile : Profile
     {
         public UserProfile()
         {
+            CreateMap<User, domainDto.UserDto>()
+                .ReverseMap();
             CreateMap<User, UserDTO>()
                 .ReverseMap();
         }

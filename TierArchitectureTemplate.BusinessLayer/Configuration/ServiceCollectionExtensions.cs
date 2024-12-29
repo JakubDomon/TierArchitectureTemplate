@@ -1,15 +1,15 @@
-﻿using BusinessLayer.Logic.Common.Handlers;
-using BusinessLayer.Logic.Common.Handlers.Providers;
-using BusinessLayer.Logic.Common.Validators;
-using BusinessLayer.Logic.Common.Validators.Providers;
-using BusinessLayer.Logic.Modules.Handlers.Specific.Membership;
-using BusinessLayer.Logic.Modules.Validators.Membership;
-using BusinessLayer.Models.Communication.Messages.Requests.Specific.Membership;
-using BusinessLayer.Models.Communication.Messages.Responses.Specific.Membership;
+﻿using Domain.DTO.Requests.Specific.Membership;
+using Domain.DTO.Responses.Specific.Membership;
+using Domain.Logic.Common.Handlers;
+using Domain.Logic.Common.Handlers.Providers;
+using Domain.Logic.Common.Validators;
+using Domain.Logic.Common.Validators.Providers;
+using Domain.Logic.Modules.Handlers.Specific.Membership;
+using Domain.Logic.Modules.Validators.Membership;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace BusinessLayer.Logic.Configuration
+namespace Domain.Logic.Configuration
 {
     public static class ServiceCollectionExtensions
     {

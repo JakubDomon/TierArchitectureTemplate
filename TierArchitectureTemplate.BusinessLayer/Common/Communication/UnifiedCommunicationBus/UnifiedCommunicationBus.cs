@@ -1,14 +1,14 @@
-﻿using BusinessLayer.Logic.Common.Communication.UnifiedCommunicationBus.Helpers;
-using BusinessLayer.Logic.Common.Handlers.Providers;
-using BusinessLayer.Logic.Common.Validators.Providers;
-using BusinessLayer.Models.Communication.Handlers.Specific;
-using BusinessLayer.Models.Communication.Messages.Requests;
-using BusinessLayer.Models.Communication.Messages.Requests.Common;
-using BusinessLayer.Models.Communication.Messages.Responses;
-using BusinessLayer.Models.Communication.Messages.Responses.Common;
-using BusinessLayer.Models.Communication.Validation.Specific;
+﻿using Domain.DTO.Requests;
+using Domain.DTO.Requests.Common;
+using Domain.DTO.Responses;
+using Domain.DTO.Responses.Common;
+using Domain.Logic.Common.Communication.UnifiedCommunicationBus.Helpers;
+using Domain.Logic.Common.Handlers.Providers;
+using Domain.Logic.Common.Validators.Providers;
+using Domain.Models.Handlers.Specific;
+using Domain.Models.Validation.Specific;
 
-namespace BusinessLayer.Logic.Common.Communication.UnifiedCommunicationBus
+namespace Domain.Logic.Common.Communication.UnifiedCommunicationBus
 {
     public class UnifiedCommunicationBus
     {

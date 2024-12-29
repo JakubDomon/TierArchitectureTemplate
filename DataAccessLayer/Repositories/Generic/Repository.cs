@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using DataAccessLayer.DTO;
-using DataAccessLayer.DTO.CommunicationObjects;
+using DataAccess.DTO;
+using DataAccess.DTO.CommunicationObjects;
+using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace DataAccessLayer.Repositories.Generic
+namespace DataAccess.Repositories.Generic
 {
     public abstract class Repository<TEntity, TDto> : RepositoryBase, IRepository<TEntity, TDto>
         where TEntity : class

@@ -1,10 +1,10 @@
-﻿using BusinessLayer.Logic.Common.Validators;
-using BusinessLayer.Logic.Resources.Messages;
-using BusinessLayer.Models.Communication.Messages.Messages;
-using BusinessLayer.Models.Communication.Validation.Enums;
-using DataAccessLayer.Repositories.Membership;
+﻿using BusinessLayer.Logic.Resources.Messages;
+using DataAccess.Repositories.Membership;
+using Domain.DTO.Messages;
+using Domain.Logic.Common.Validators;
+using Domain.Models.Validation.Enums;
 
-namespace BusinessLayer.Logic.Modules.Validators.Membership.Rules
+namespace Domain.Logic.Modules.Validators.Membership.Rules
 {
     internal class ValidateUserExistsRule(string userLogin, IUserRepository userRepository) : ValidationRuleBase(ValidationScope.UserValidation)
     {

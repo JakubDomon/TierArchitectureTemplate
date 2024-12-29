@@ -1,8 +1,8 @@
-﻿using BusinessLayer.Models.Communication.Handlers.Specific;
-using BusinessLayer.Models.Communication.Messages.Requests;
-using BusinessLayer.Models.Communication.Messages.Responses;
+﻿using Domain.DTO.Requests;
+using Domain.DTO.Responses;
+using Domain.Models.Handlers.Specific;
 
-namespace BusinessLayer.Logic.Common.Handlers
+namespace Domain.Logic.Common.Handlers
 {
     internal interface IHandler<Input, Output>
         where Input : RequestBase

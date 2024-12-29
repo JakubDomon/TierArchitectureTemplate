@@ -1,9 +1,9 @@
-﻿using BusinessLayer.Models.Communication.Handlers.Specific;
-using BusinessLayer.Models.Communication.Messages.Responses;
-using BusinessLayer.Models.Communication.Messages.Responses.Common;
-using BusinessLayer.Models.Communication.Validation.Specific;
+﻿using Domain.DTO.Responses;
+using Domain.DTO.Responses.Common;
+using Domain.Models.Handlers.Specific;
+using Domain.Models.Validation.Specific;
 
-namespace BusinessLayer.Logic.Common.Communication.UnifiedCommunicationBus.Helpers
+namespace Domain.Logic.Common.Communication.UnifiedCommunicationBus.Helpers
 {
     internal static class UnifiedCommunicationHelper
     {

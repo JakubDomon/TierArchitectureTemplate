@@ -1,4 +1,4 @@
-﻿namespace DataAccessLayer.Entities
+﻿namespace DataAccess.Entities
 {
     internal abstract class BaseEntity
     {

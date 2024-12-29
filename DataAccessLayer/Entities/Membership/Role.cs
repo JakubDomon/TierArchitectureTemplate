@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace DataAccessLayer.Entities.Membership
+namespace DataAccess.Entities.Membership
 {
     internal class Role : IdentityRole
     {

@@ -1,4 +1,4 @@
-﻿namespace DataAccessLayer.DTO.Common.GenericRepositories
+﻿namespace DataAccess.DTO.Common.GenericRepositories
 {
     public interface IGenericRepositoryModel
     {

@@ -1,4 +1,4 @@
-﻿namespace DataAccessLayer.DTO.Membership
+﻿namespace DataAccess.DTO.Membership
 {
     public class UserDTO : BaseDTO
     {

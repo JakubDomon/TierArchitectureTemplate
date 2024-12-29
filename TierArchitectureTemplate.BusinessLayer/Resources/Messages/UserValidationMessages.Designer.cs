@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BusinessLayer.Logic.Resources.Messages {
+namespace Domain.Logic.Resources.Messages {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace BusinessLayer.Logic.Resources.Messages {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BusinessLayer.Logic.Resources.Messages.UserValidationMessages", typeof(UserValidationMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Domain.Logic.Resources.Messages.UserValidationMessages", typeof(UserValidationMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

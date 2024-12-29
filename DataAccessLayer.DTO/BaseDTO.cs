@@ -1,4 +1,4 @@
-﻿namespace DataAccessLayer.DTO
+﻿namespace DataAccess.DTO
 {
     public class BaseDTO
     {

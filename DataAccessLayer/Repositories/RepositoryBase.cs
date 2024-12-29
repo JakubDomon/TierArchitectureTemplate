@@ -1,11 +1,10 @@
-﻿using DataAccessLayer.DTO;
-using DataAccessLayer.DTO.CommunicationObjects;
+﻿using DataAccess.DTO.CommunicationObjects;
 
-namespace DataAccessLayer.Repositories
+namespace DataAccess.Repositories
 {
     public abstract class RepositoryBase
     {
-        protected DataOperationResult<T> CreateSuccessResponse<T>(T? data) 
+        protected DataOperationResult<T> CreateSuccessResponse<T>(T? data)
         {
             return new()
             {

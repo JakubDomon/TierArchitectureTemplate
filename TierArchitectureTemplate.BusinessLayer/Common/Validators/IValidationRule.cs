@@ -1,6 +1,6 @@
-﻿using BusinessLayer.Models.Communication.Messages.Messages;
+﻿using Domain.DTO.Messages;
 
-namespace BusinessLayer.Logic.Common.Validators
+namespace Domain.Logic.Common.Validators
 {
     public interface IValidationRule
     {
