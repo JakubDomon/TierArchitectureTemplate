@@ -1,7 +1,7 @@
-﻿using BusinessLayer.Logic.Resources.Messages;
-using DataAccess.Logic.Repositories.Membership;
+﻿using DataAccess.Logic.Repositories.Membership;
 using Domain.DTO.Messages;
 using Domain.Logic.Common.Validators;
+using Domain.Logic.Resources.Messages;
 using Domain.Models.Validation.Enums;
 
 namespace Domain.Logic.Modules.Validators.Membership.Rules

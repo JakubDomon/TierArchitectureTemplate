@@ -27,7 +27,7 @@ namespace Domain.Logic.Common.Communication.UnifiedCommunicationBus
         {
             ValidationResult validationResult = await _validatorProvider.GetValidator<Input>().ValidateAsync(request.Data);
 
-            if (!validationResult.IsSucceded)
+            if (!validationResult.IsSucceeded)
             {
                 return UnifiedCommunicationHelper.CreateValidationErrorResponse<Output>(validationResult);
             }

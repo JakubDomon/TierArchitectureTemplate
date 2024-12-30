@@ -1,7 +1,7 @@
-﻿using System.Net;
-using TierArchitectureTemplate.API.Middleware.Exception.DTO;
+﻿using API.Middleware.Exception.DTO;
+using System.Net;
 
-namespace TierArchitectureTemplate.API.Middleware.Exception
+namespace API.Middleware.Exception
 {
     public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger logger)
     {

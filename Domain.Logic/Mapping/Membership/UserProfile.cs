@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using dalDto = DataAccessLayer.DTO.Membership;
 using domainDto = Domain.DTO.Models.Membership;
 using Domain.Models.BusinessModels.Membership;
 using DataAccess.DTO.Membership;

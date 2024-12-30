@@ -27,5 +27,23 @@
     <ProjectReference Include="..\DataAccess.Logic\DataAccess.Logic.csproj" />
     <ProjectReference Include="..\Domain.Logic\Domain.Logic.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Update="DTO\MessagesResources\MembershipValidationMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MembershipValidationMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Update="DTO\MessagesResources\MembershipValidationMessages.pl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DTO\MessagesResources\MembershipValidationMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MembershipValidationMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 
 </Project>

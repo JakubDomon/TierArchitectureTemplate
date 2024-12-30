@@ -2,7 +2,7 @@
 using Domain.DTO.Requests.Specific.Membership;
 using Domain.DTO.Responses.Specific.Membership;
 using Domain.Logic.Common.Handlers;
-using Domain.Models.BusinessModels.Membership;
+using Domain.Logic.Modules.Handlers.Helpers;
 using Domain.Models.Handlers.Specific;
 
 namespace Domain.Logic.Modules.Handlers.Specific.Membership
@@ -11,10 +11,9 @@ namespace Domain.Logic.Modules.Handlers.Specific.Membership
     {
         private IUserRepository _userRepository { get; set; } = userRepository;
 
-        public override async Task<HandlerResult<RegisterUserResponse>> HandleAsync(RegisterUserRequest request)
+        public async Task<HandlerResult<RegisterUserResponse>> HandleAsync(RegisterUserRequest request)
         {
-            User user =
-            _userRepository.CreateAsync()
+            return await Task.Run(() => HandlerResultHelper.CreateHandlerResult(new RegisterUserResponse() { UserId = Guid.NewGuid() }));
         }
     }
 }

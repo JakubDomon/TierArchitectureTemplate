@@ -13,15 +13,15 @@ namespace Domain.Logic.Common.Validators
         public async Task<ValidationResult> ValidateAsync(Input input)
         {
             PrepareValidationRules(input);
-            var validationResult = new ValidationResult();
+            IEnumerable<IMessage> validationMessages = [];
 
             var results = await Task.WhenAll(_validationRules
                 .Select(rule => rule.ValidateAsync()));
 
             if (results.Length > 0)
-                validationResult.Messages = results.Where(x => x != null).Cast<IMessage>();
+                validationMessages = results.Where(x => x != null).Cast<IMessage>();
 
-            return validationResult;
+            return new(validationMessages);
         }
 
         protected void AddValidationRule(IValidationRule rule) => _validationRules.Add(rule);
