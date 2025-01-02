@@ -3,6 +3,7 @@ using DataAccess.DTO.CommunicationObjects;
 using DataAccess.DTO.Membership;
 using DataAccess.Logic.Entities.Membership;
 using Microsoft.AspNetCore.Identity;
+using System.Linq.Expressions;
 
 namespace DataAccess.Logic.Repositories.Membership
 {
@@ -11,13 +12,22 @@ namespace DataAccess.Logic.Repositories.Membership
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
 
-        internal UserRepository(IMapper mapper, UserManager<User> userManager)
+        internal UserRepository(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _mapper = mapper;
             _userManager = userManager;
         }
 
-        public async Task<DataOperationResult<UserDTO>> FindByIdAsync(Guid id)
+        public async Task<DataOperationResult<IEnumerable<UserDTO>>> FindManyByRoleAsync(string roleName, FindOptions? findOptions = null)
+        {
+            IEnumerable<User> users = await _userManager.GetUsersInRoleAsync(roleName);
+
+            return users != null
+                ? CreateSuccessResponse(_mapper.Map<IEnumerable<UserDTO>>(users))
+                : CreateErrorResponse<IEnumerable<UserDTO>>();
+        }
+
+        public async Task<DataOperationResult<UserDTO>> FindByIdAsync(Guid id, FindOptions? findOptions = null)
         {
             User? user = await _userManager.FindByIdAsync(id.ToString());
 

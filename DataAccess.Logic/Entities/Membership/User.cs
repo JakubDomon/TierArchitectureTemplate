@@ -2,7 +2,7 @@
 
 namespace DataAccess.Logic.Entities.Membership
 {
-    internal class User : IdentityUser
+    internal class User : IdentityUser<Guid>
     {
         public required string FirstName { get; set; }
         public required string LastName { get; set; }

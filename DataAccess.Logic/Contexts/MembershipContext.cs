@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Logic.Contexts
 {
-    internal class MembershipContext(ConnectionStringHelper connectionStringHelper) : IdentityDbContext<User>
+    internal class MembershipContext(ConnectionStringHelper connectionStringHelper) : IdentityDbContext<User, Role, Guid>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
