@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.DTO
 {
-    public record BaseDTO
+    public record BaseDto
     {
         public Guid Id { get; set; }
         public DateTime? CreatedAt { get; set; }

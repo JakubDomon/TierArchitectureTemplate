@@ -7,9 +7,9 @@ using System.Linq.Expressions;
 
 namespace DataAccess.Logic.Repositories.Generic
 {
-    public abstract class Repository<TEntity, TDto> : RepositoryBase, IRepository<TEntity, TDto>
+    public abstract class Repository<TEntity, TDto> : IRepository<TEntity, TDto>
         where TEntity : class
-        where TDto : BaseDTO
+        where TDto : BaseDto
     {
         private readonly DbContext _dbContext;
         private readonly DbSet<TEntity> _dbSet;
@@ -28,8 +28,8 @@ namespace DataAccess.Logic.Repositories.Generic
             await _dbSet.AddAsync(entity);
 
             return await _dbContext.SaveChangesAsync() > 0
-                ? CreateSuccessResponse(_mapper.Map<TDto>(entity))
-                : CreateErrorResponse<TDto>();
+                ? DataOperationResponseHelper.CreateResponse(_mapper.Map<TDto>(entity))
+                : DataOperationResponseHelper.CreateResponse<TDto>();
         }
 
         public async Task<bool> AnyAsync()
@@ -46,7 +46,7 @@ namespace DataAccess.Logic.Repositories.Generic
         {
             var entity = _dbSet.Find(id);
 
-            if (entity == null)
+            if (entity is null)
                 return false;
 
             _dbSet.Remove(entity);
@@ -72,11 +72,11 @@ namespace DataAccess.Logic.Repositories.Generic
             var entityPredicate = _mapper.Map<Expression<Func<TEntity, bool>>>(predicate);
             IEnumerable<TEntity> entities = await _dbSet.Where(entityPredicate).ToListAsync();
 
-            return DataOperationResponseHelper.CreateResponse(_mapper.Map<IEnumerable<TDto>>(entities), entities.Any());
+            return DataOperationResponseHelper.CreateResponse(_mapper.Map<IEnumerable<TDto>>(entities));
         }
 
         public async Task<DataOperationResult<IEnumerable<TDto>>> GetAllAsync(FindOptions? findOptions = null) 
-            => DataOperationResponseHelper.CreateResponse(_mapper.Map<IEnumerable<TDto>>(await _dbSet.ToListAsync()), _dbSet.Any());
+            => DataOperationResponseHelper.CreateResponse(_mapper.Map<IEnumerable<TDto>>(await _dbSet.ToListAsync()));
 
         public abstract Task<DataOperationResult<TDto>> FindByIdAsync(Guid id, FindOptions? findOptions = null);
 

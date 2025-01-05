@@ -6,7 +6,7 @@ namespace DataAccess.Logic.Repositories.Generic
 {
     public interface IRepository<TEntity, TDto>
         where TEntity : class
-        where TDto : BaseDTO
+        where TDto : BaseDto
     {
         public Task<DataOperationResult<IEnumerable<TDto>>> GetAllAsync(FindOptions? findOptions = null);
         public Task<DataOperationResult<TDto>> FindByIdAsync(Guid id, FindOptions? findOptions = null);

@@ -8,7 +8,7 @@ namespace DataAccess.Logic.Mapping.Membership
     {
         public UserProfile()
         {
-            CreateMap<User, UserDTO>()
+            CreateMap<User, UserDto>()
                 .ReverseMap();
         }
     }

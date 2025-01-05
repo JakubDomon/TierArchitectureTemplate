@@ -16,7 +16,7 @@ namespace Domain.Logic.Common.Validators.Providers
         {
             var validator = _serviceProvider.GetService(typeof(IValidator<Input>));
 
-            if (validator == null)
+            if (validator is null)
                 throw new InvalidOperationException($"No validator found for input type {typeof(Input).Name}");
 
             return (IValidator<Input>)validator;

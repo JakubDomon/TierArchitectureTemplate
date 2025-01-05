@@ -18,7 +18,7 @@ namespace Domain.Logic.Common.Handlers.Providers
         {
             var handler = _serviceProvider.GetService(typeof(IHandler<Input, Output>));
 
-            if (handler == null)
+            if (handler is null)
                 throw new InvalidOperationException($"No handler found for types {typeof(Input).Name}, {typeof(Output).Name}");
 
             return (IHandler<Input, Output>)handler;

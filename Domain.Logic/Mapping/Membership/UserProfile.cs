@@ -11,7 +11,7 @@ namespace Domain.Logic.Mapping.Membership
         {
             CreateMap<User, domainDto.UserDto>()
                 .ReverseMap();
-            CreateMap<User, UserDTO>()
+            CreateMap<User, UserDto>()
                 .ReverseMap();
         }
     }

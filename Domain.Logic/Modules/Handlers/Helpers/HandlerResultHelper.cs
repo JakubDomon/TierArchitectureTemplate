@@ -6,7 +6,7 @@ namespace Domain.Logic.Modules.Handlers.Helpers
 {
     internal static class HandlerResultHelper
     {
-        public static HandlerResult<Data> CreateHandlerResult<Data>(Data data, IEnumerable<IMessage>? messages = null)
+        public static HandlerResult<Data> CreateHandlerResult<Data>(Data? data = default, IEnumerable<IMessage>? messages = null)
             where Data : ResponseBase => new()
             {
                 Data = data,

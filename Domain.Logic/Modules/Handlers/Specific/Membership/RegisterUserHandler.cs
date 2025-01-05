@@ -1,19 +1,39 @@
-﻿using DataAccess.Logic.Repositories.Membership;
+﻿using AutoMapper;
+using DataAccess.DTO.CommunicationObjects;
+using dataUserDto = DataAccess.DTO.Membership;
+using DataAccess.Logic.Repositories.Membership;
 using Domain.DTO.Requests.Specific.Membership;
 using Domain.DTO.Responses.Specific.Membership;
 using Domain.Logic.Common.Handlers;
-using Domain.Logic.Modules.Handlers.Helpers;
+using Domain.Models.BusinessModels.Membership;
 using Domain.Models.Handlers.Specific;
+using Domain.Logic.Modules.Handlers.Helpers;
 
 namespace Domain.Logic.Modules.Handlers.Specific.Membership
 {
-    internal class RegisterUserHandler(IUserRepository userRepository) : IHandler<RegisterUserRequest, RegisterUserResponse>
+    internal class RegisterUserHandler : IHandler<RegisterUserRequest, RegisterUserResponse>
     {
-        private IUserRepository _userRepository { get; set; } = userRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
+
+        internal RegisterUserHandler(IUserRepository userRepository, IMapper mapper)
+        {
+            _userRepository = userRepository;
+            _mapper = mapper;
+        }
 
         public async Task<HandlerResult<RegisterUserResponse>> HandleAsync(RegisterUserRequest request)
         {
-            return await Task.Run(() => HandlerResultHelper.CreateHandlerResult(new RegisterUserResponse() { UserId = Guid.NewGuid() }));
+            User user = _mapper.Map<User>(request.UserData);
+
+            DataOperationResult<dataUserDto.UserDto> result = await _userRepository.RegisterAsync(_mapper.Map<dataUserDto.UserDto>(user));
+
+            return result.IsSuccess
+                ? HandlerResultHelper.CreateHandlerResult(new RegisterUserResponse() 
+                    { 
+                        UserId = result.Data.Id
+                    })
+                : HandlerResultHelper.CreateHandlerResult<RegisterUserResponse>();
         }
     }
 }

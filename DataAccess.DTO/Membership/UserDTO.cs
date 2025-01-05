@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.DTO.Membership
 {
-    public record UserDTO : BaseDTO
+    public record UserDto : BaseDto
     {
         public string? Login { get; set; }
         public string? Password { get; set; }

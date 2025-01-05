@@ -2,12 +2,12 @@
 using DataAccess.DTO.CommunicationObjects;
 using DataAccess.DTO.Membership;
 using DataAccess.Logic.Entities.Membership;
+using DataAccess.Logic.Repositories.Helpers;
 using Microsoft.AspNetCore.Identity;
-using System.Linq.Expressions;
 
 namespace DataAccess.Logic.Repositories.Membership
 {
-    public class UserRepository : RepositoryBase, IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
@@ -18,42 +18,39 @@ namespace DataAccess.Logic.Repositories.Membership
             _userManager = userManager;
         }
 
-        public async Task<DataOperationResult<IEnumerable<UserDTO>>> FindManyByRoleAsync(string roleName, FindOptions? findOptions = null)
+        public async Task<DataOperationResult<IEnumerable<UserDto>>> FindManyByRoleAsync(string roleName, FindOptions? findOptions = null)
         {
             IEnumerable<User> users = await _userManager.GetUsersInRoleAsync(roleName);
 
-            return users != null
-                ? CreateSuccessResponse(_mapper.Map<IEnumerable<UserDTO>>(users))
-                : CreateErrorResponse<IEnumerable<UserDTO>>();
+            return users is not null
+                ? DataOperationResponseHelper.CreateResponse(_mapper.Map<IEnumerable<UserDto>>(users))
+                : DataOperationResponseHelper.CreateResponse<IEnumerable<UserDto>>();
         }
 
-        public async Task<DataOperationResult<UserDTO>> FindByIdAsync(Guid id, FindOptions? findOptions = null)
+        public async Task<DataOperationResult<UserDto>> FindByIdAsync(Guid id, FindOptions? findOptions = null)
         {
             User? user = await _userManager.FindByIdAsync(id.ToString());
 
-            return user != null
-                ? CreateSuccessResponse(_mapper.Map<UserDTO>(user))
-                : CreateErrorResponse<UserDTO>();
+            return user is not null
+                ? DataOperationResponseHelper.CreateResponse(_mapper.Map<UserDto>(user))
+                : DataOperationResponseHelper.CreateResponse<UserDto>();
         }
 
-        public async Task<DataOperationResult<UserDTO>> CreateAsync(UserDTO userDTO)
+        public async Task<DataOperationResult<UserDto>> RegisterAsync(UserDto userDTO)
         {
             User user = _mapper.Map<User>(userDTO);
             IdentityResult result = await _userManager.CreateAsync(user, userDTO.Password ?? string.Empty);
 
-            if (result.Succeeded)
-            {
-                return CreateSuccessResponse(_mapper.Map<UserDTO>(user));
-            }
-
-            return CreateErrorResponse<UserDTO>();
+            return result.Succeeded
+                ? DataOperationResponseHelper.CreateResponse(_mapper.Map<UserDto>(user))
+                : DataOperationResponseHelper.CreateResponse<UserDto>();
         }
 
         public async Task<bool> DeleteAsync(Guid id)
         {
             User? user = await _userManager.FindByIdAsync(id.ToString());
 
-            if (user != null)
+            if (user is not null)
             {
                 IdentityResult result = await _userManager.DeleteAsync(user);
                 return result.Succeeded;
@@ -62,12 +59,12 @@ namespace DataAccess.Logic.Repositories.Membership
             return false;
         }
 
-        public async Task<DataOperationResult<UserDTO>> UpdateAsync(Guid id, UserDTO userDTO)
+        public async Task<DataOperationResult<UserDto>> UpdateAsync(Guid id, UserDto userDTO)
         {
             User? user = await _userManager.FindByIdAsync(id.ToString());
 
-            if (user == null)
-                return CreateErrorResponse<UserDTO>();
+            if (user is null)
+                return DataOperationResponseHelper.CreateResponse<UserDto>();
 
             User userNewData = _mapper.Map<User>(userDTO);
 
@@ -76,15 +73,15 @@ namespace DataAccess.Logic.Repositories.Membership
             IdentityResult result = await _userManager.UpdateAsync(user);
 
             return result.Succeeded
-                ? CreateSuccessResponse(_mapper.Map<UserDTO>(user))
-                : CreateErrorResponse<UserDTO>();
+                ? DataOperationResponseHelper.CreateResponse(_mapper.Map<UserDto>(user))
+                : DataOperationResponseHelper.CreateResponse<UserDto>();
         }
 
         public async Task<bool> UserExists(string login) => await _userManager.FindByNameAsync(login) != null;
 
         private void UpdateUserEntity(User user, User userNewData)
         {
-            if (user == null)
+            if (user is null)
                 return;
 
             user.FirstName = userNewData.FirstName;
