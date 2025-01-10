@@ -11,6 +11,7 @@ using Moq.EntityFrameworkCore;
 using DataAccess.Tests.DataHelpers;
 using DataAccess.Logic.Configuration.Helpers;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Tests.Repositories
 {
@@ -26,22 +27,21 @@ namespace DataAccess.Tests.Repositories
                 cfg.AddProfile<UserProfile>();
             }).CreateMapper();
 
-            var mockConfiguration = Mock.Of<IConfiguration>();
-            var mockConnectionStringHelper = new Mock<ConnectionStringHelper>(MockBehavior.Strict, new Mock<IConfiguration>().Object);
-            var mockMembershipContext = new Mock<MembershipContext>(mockConnectionStringHelper);
-
             var mockUserManager = GetMockUserManager();
             var mockSignInManager = GetMockSignInManager(mockUserManager);
-            
 
-            mockMembershipContext
-                .Setup(x => x.Users)
-                .ReturnsDbSet(MembershipContextDataHelper.GetFakeUsersSet());
+            var testUser = MembershipContextDataHelper.GetFakeUsersSet().FirstOrDefault(u => u.UserName == login);
+            var wouldAuthenticate = testUser != null
+                ? testUser.PasswordHash == password
+                : false;
 
-            var testUser = mockMembershipContext.Object.Users.FirstOrDefault(u => u.UserName == login);
+            mockUserManager
+                .Setup(x => x.FindByNameAsync(login))
+                .ReturnsAsync(testUser);
+
             mockSignInManager
-                .Setup(x => x.PasswordSignInAsync(login, password, false, false))
-                .ReturnsAsync((testUser != null && shouldAuthenticate)
+                .Setup(x => x.CheckPasswordSignInAsync(It.IsAny<User>(), password, false))
+                .ReturnsAsync(wouldAuthenticate
                     ? SignInResult.Success 
                     : SignInResult.Failed);
 
