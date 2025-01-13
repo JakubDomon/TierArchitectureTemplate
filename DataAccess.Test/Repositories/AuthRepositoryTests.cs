@@ -12,6 +12,8 @@ using DataAccess.Tests.DataHelpers;
 using DataAccess.Logic.Configuration.Helpers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication;
 
 namespace DataAccess.Tests.Repositories
 {
@@ -70,9 +72,9 @@ namespace DataAccess.Tests.Repositories
             mockUserManager.Object,
             Mock.Of<IHttpContextAccessor>(),
             Mock.Of<IUserClaimsPrincipalFactory<User>>(),
-            null,
+            Mock.Of<IOptions<IdentityOptions>>(),
             Mock.Of<ILogger<SignInManager<User>>>(),
-            null,
-            null);
+            Mock.Of<IAuthenticationService>(),
+            Mock.Of<IUserConfirmation<User>>());
     }
 }
