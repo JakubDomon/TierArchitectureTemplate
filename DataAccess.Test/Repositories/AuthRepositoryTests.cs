@@ -41,7 +41,7 @@ namespace DataAccess.Tests.Repositories
                     ? SignInResult.Success
                     : SignInResult.Failed);
 
-            var authRepository = new AuthRepository(fakeMockUserManager.Object, fakeMockSignInManager.Object, mapper);
+            IAuthRepository authRepository = new AuthRepository(fakeMockUserManager.Object, fakeMockSignInManager.Object, mapper);
 
             // Act
             var result = await authRepository.AuthenticateAsync(login, password);

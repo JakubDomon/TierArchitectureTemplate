@@ -1,5 +1,4 @@
 ﻿using DataAccess.Logic.Entities.Membership;
-using Microsoft.AspNetCore.Identity;
 
 namespace DataAccess.Tests.DataHelpers
 {
@@ -8,7 +7,7 @@ namespace DataAccess.Tests.DataHelpers
         public static IEnumerable<User> GetFakeUsersSet() => [
             new User
             {
-                Id = Guid.NewGuid(),
+                Id = new Guid("19feb8a7-3e1d-4970-a95e-f9e88c5e1559"),
                 UserName = "TestUserName",
                 Email = "testUserName@test.com",
                 FirstName = "test",
@@ -17,7 +16,7 @@ namespace DataAccess.Tests.DataHelpers
             },
             new User
             {
-                Id = Guid.NewGuid(),
+                Id = new Guid("709e2aeb-b511-45c1-acb8-f06ec574c95f"),
                 UserName = "TestUserName2",
                 Email = "testUserName2@test.com",
                 FirstName = "test2",
