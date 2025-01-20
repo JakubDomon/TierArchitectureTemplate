@@ -8,7 +8,7 @@ namespace DataAccess.Tests.FakeObjects
 {
     internal class FakeUserManager : UserManager<User>
     {
-        internal FakeUserManager()
+        public FakeUserManager()
             : base(Mock.Of<IUserStore<User>>(),
                   Mock.Of<IOptions<IdentityOptions>>(),
                   Mock.Of<IPasswordHasher<User>>(),
@@ -17,7 +17,6 @@ namespace DataAccess.Tests.FakeObjects
                   Mock.Of<ILookupNormalizer>(),
                   Mock.Of<IdentityErrorDescriber>(),
                   Mock.Of<IServiceProvider>(),
-                  Mock.Of<ILogger<UserManager<User>>>())
-        { }
+                  Mock.Of<ILogger<UserManager<User>>>()) { }
     }
 }

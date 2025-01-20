@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataAccess.DTO.CommunicationObjects;
+using DataAccess.Logic.Entities.Membership;
 
 namespace DataAccess.Tests.Repositories
 {
-    internal class UserRepositoryTests
+    public class UserRepositoryTests
     {
+        [Fact]
+        public async void Count_ShouldFindByIdAndReturnSuccessDataOperationResult()
+        {
+
+        }
     }
 }

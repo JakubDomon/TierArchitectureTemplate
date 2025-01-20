@@ -1,19 +1,11 @@
 ﻿using AutoMapper;
-using DataAccess.Logic.Contexts;
 using DataAccess.Logic.Entities.Membership;
 using DataAccess.Logic.Mapping.Membership;
 using DataAccess.Logic.Repositories.Authentication;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
 using Moq;
-using Microsoft.AspNetCore.Http;
-using Moq.EntityFrameworkCore;
 using DataAccess.Tests.DataHelpers;
-using DataAccess.Logic.Configuration.Helpers;
-using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Authentication;
+using DataAccess.Tests.FakeObjects;
 
 namespace DataAccess.Tests.Repositories
 {
@@ -21,6 +13,8 @@ namespace DataAccess.Tests.Repositories
     {
         [Theory]
         [InlineData("TestUserName", "testPasswordHash", true)]
+        [InlineData("TestUserName", "IncorrectPassword", false)]
+        [InlineData("TestUserNameNotExist", "IncorrectPasstword", false)]
         public async void ShouldAuthenticate(string login, string password, bool shouldAuthenticate)
         {
             // Arrange
@@ -29,52 +23,32 @@ namespace DataAccess.Tests.Repositories
                 cfg.AddProfile<UserProfile>();
             }).CreateMapper();
 
-            var mockUserManager = GetMockUserManager();
-            var mockSignInManager = GetMockSignInManager(mockUserManager);
+            var fakeMockUserManager = new Mock<FakeUserManager>();
+            var fakeMockSignInManager = new Mock<FakeSignInManager>();
 
             var testUser = MembershipContextDataHelper.GetFakeUsersSet().FirstOrDefault(u => u.UserName == login);
             var wouldAuthenticate = testUser != null
                 ? testUser.PasswordHash == password
                 : false;
 
-            mockUserManager
+            fakeMockUserManager
                 .Setup(x => x.FindByNameAsync(login))
                 .ReturnsAsync(testUser);
 
-            mockSignInManager
+            fakeMockSignInManager
                 .Setup(x => x.CheckPasswordSignInAsync(It.IsAny<User>(), password, false))
                 .ReturnsAsync(wouldAuthenticate
-                    ? SignInResult.Success 
+                    ? SignInResult.Success
                     : SignInResult.Failed);
 
-            var authRepository = new AuthRepository(mockUserManager.Object, mockSignInManager.Object, mapper);
+            var authRepository = new AuthRepository(fakeMockUserManager.Object, fakeMockSignInManager.Object, mapper);
 
             // Act
             var result = await authRepository.AuthenticateAsync(login, password);
 
             // Assert
             Assert.NotNull(result);
-            Assert.True(result.IsSuccess);
+            Assert.True(result.IsSuccess == shouldAuthenticate);
         }
-
-        private Mock<UserManager<User>> GetMockUserManager() => new Mock<UserManager<User>>(
-                Mock.Of<IUserStore<User>>(),
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null);
-
-        private Mock<SignInManager<User>> GetMockSignInManager(Mock<UserManager<User>> mockUserManager) => new Mock<SignInManager<User>>(
-            mockUserManager.Object,
-            Mock.Of<IHttpContextAccessor>(),
-            Mock.Of<IUserClaimsPrincipalFactory<User>>(),
-            Mock.Of<IOptions<IdentityOptions>>(),
-            Mock.Of<ILogger<SignInManager<User>>>(),
-            Mock.Of<IAuthenticationService>(),
-            Mock.Of<IUserConfirmation<User>>());
     }
 }
