@@ -89,7 +89,6 @@ namespace DataAccess.Logic.Repositories.Membership
             user.Email = userNewData.Email;
             user.PhoneNumber = userNewData.PhoneNumber;
             user.UserName = userNewData.UserName;
-            user.PasswordHash = userNewData.PasswordHash;
         }
     }
 }

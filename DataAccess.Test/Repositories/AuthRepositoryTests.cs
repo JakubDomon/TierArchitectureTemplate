@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Moq;
 using DataAccess.Tests.DataHelpers;
 using DataAccess.Tests.FakeObjects;
+using DataAccess.DTO.CommunicationObjects;
+using DataAccess.DTO.Authentication;
 
 namespace DataAccess.Tests.Repositories
 {
@@ -15,7 +17,7 @@ namespace DataAccess.Tests.Repositories
         [InlineData("TestUserName", "testPasswordHash", true)]
         [InlineData("TestUserName", "IncorrectPassword", false)]
         [InlineData("TestUserNameNotExist", "IncorrectPasstword", false)]
-        public async void ShouldAuthenticate(string login, string password, bool shouldAuthenticate)
+        public async void Authenticate_ShouldReturnDataOperationResult(string login, string password, bool shouldAuthenticate)
         {
             // Arrange
             var mapper = new MapperConfiguration(cfg =>
@@ -44,7 +46,7 @@ namespace DataAccess.Tests.Repositories
             IAuthRepository authRepository = new AuthRepository(fakeMockUserManager.Object, fakeMockSignInManager.Object, mapper);
 
             // Act
-            var result = await authRepository.AuthenticateAsync(login, password);
+            DataOperationResult<AuthResult> result = await authRepository.AuthenticateAsync(login, password);
 
             // Assert
             Assert.NotNull(result);
