@@ -18,7 +18,7 @@ namespace DataAccess.Logic.Repositories.Membership
             _userManager = userManager;
         }
 
-        public async Task<DataOperationResult<IEnumerable<UserDto>>> FindManyByRoleAsync(string roleName, FindOptions? findOptions = null)
+        public async Task<DataOperationResult<IEnumerable<UserDto>>> FindManyByRoleAsync(string roleName)
         {
             IEnumerable<User> users = await _userManager.GetUsersInRoleAsync(roleName);
 
@@ -27,7 +27,7 @@ namespace DataAccess.Logic.Repositories.Membership
                 : DataOperationResponseHelper.CreateResponse<IEnumerable<UserDto>>();
         }
 
-        public async Task<DataOperationResult<UserDto>> FindByIdAsync(Guid id, FindOptions? findOptions = null)
+        public async Task<DataOperationResult<UserDto>> FindByIdAsync(Guid id)
         {
             User? user = await _userManager.FindByIdAsync(id.ToString());
 

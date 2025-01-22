@@ -57,17 +57,17 @@ namespace DataAccess.Logic.Repositories.Generic
         public async Task<bool> DeleteManyAsync(Expression<Func<TDto, bool>> predicate)
         {
             var entityPredicate = _mapper.Map<Expression<Func<TEntity, bool>>>(predicate);
-            var entities = _dbSet.Where(entityPredicate);
+            IQueryable<TEntity> entities = _dbSet.Where(entityPredicate);
 
             if (!entities.Any())
                 return false;
 
-            _dbSet.RemoveRange(entities.ToList());
+            _dbSet.RemoveRange(entities);
 
             return await _dbContext.SaveChangesAsync() > 0;
         }
 
-        public async Task<DataOperationResult<IEnumerable<TDto>>> FindAsync(Expression<Func<TDto, bool>> predicate, FindOptions? findOptions = null) 
+        public async Task<DataOperationResult<IEnumerable<TDto>>> FindAsync(Expression<Func<TDto, bool>> predicate) 
         {
             var entityPredicate = _mapper.Map<Expression<Func<TEntity, bool>>>(predicate);
             IEnumerable<TEntity> entities = await _dbSet.Where(entityPredicate).ToListAsync();
@@ -75,10 +75,10 @@ namespace DataAccess.Logic.Repositories.Generic
             return DataOperationResponseHelper.CreateResponse(_mapper.Map<IEnumerable<TDto>>(entities));
         }
 
-        public async Task<DataOperationResult<IEnumerable<TDto>>> GetAllAsync(FindOptions? findOptions = null) 
+        public async Task<DataOperationResult<IEnumerable<TDto>>> GetAllAsync() 
             => DataOperationResponseHelper.CreateResponse(_mapper.Map<IEnumerable<TDto>>(await _dbSet.ToListAsync()));
 
-        public abstract Task<DataOperationResult<TDto>> FindByIdAsync(Guid id, FindOptions? findOptions = null);
+        public abstract Task<DataOperationResult<TDto>> FindByIdAsync(Guid id);
 
         public abstract Task<DataOperationResult<TDto>> UpdateAsync(Guid id, TDto entity);
     }
