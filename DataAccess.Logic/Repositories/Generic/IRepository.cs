@@ -4,8 +4,7 @@ using System.Linq.Expressions;
 
 namespace DataAccess.Logic.Repositories.Generic
 {
-    public interface IRepository<TEntity, TDto>
-        where TEntity : class
+    public interface IRepository<TDto>
         where TDto : BaseDto
     {
         public Task<DataOperationResult<IEnumerable<TDto>>> GetAllAsync();
