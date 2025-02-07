@@ -118,7 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="UserAlreadyExists" xml:space="preserve">
-    <value>Użytkownik o podanym loginie już istnieje</value>
+    <value>User with provided login already exists</value>
     <comment>1</comment>
+  </data>
+  <data name="UserLoginInvalid" xml:space="preserve">
+    <value>User login is invalid</value>
+    <comment>2</comment>
   </data>
 </root>

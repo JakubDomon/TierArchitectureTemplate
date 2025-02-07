@@ -61,11 +61,20 @@ namespace Domain.Logic.Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Użytkownik o podanym loginie już istnieje.
+        ///   Looks up a localized string similar to User with provided login already exists.
         /// </summary>
         internal static string UserAlreadyExists {
             get {
                 return ResourceManager.GetString("UserAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User login is invalid.
+        /// </summary>
+        internal static string UserLoginInvalid {
+            get {
+                return ResourceManager.GetString("UserLoginInvalid", resourceCulture);
             }
         }
     }
