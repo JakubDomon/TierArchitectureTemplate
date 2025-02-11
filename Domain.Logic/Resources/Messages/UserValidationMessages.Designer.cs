@@ -70,11 +70,29 @@ namespace Domain.Logic.Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User login is invalid.
+        ///   Looks up a localized string similar to User login invalid.
         /// </summary>
         internal static string UserLoginInvalid {
             get {
                 return ResourceManager.GetString("UserLoginInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User password invalid.
+        /// </summary>
+        internal static string UserPasswordInvalid {
+            get {
+                return ResourceManager.GetString("UserPasswordInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User password required.
+        /// </summary>
+        internal static string UserPasswordRequired {
+            get {
+                return ResourceManager.GetString("UserPasswordRequired", resourceCulture);
             }
         }
     }

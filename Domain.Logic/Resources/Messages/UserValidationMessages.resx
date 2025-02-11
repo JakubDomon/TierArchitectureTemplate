@@ -122,7 +122,15 @@
     <comment>1</comment>
   </data>
   <data name="UserLoginInvalid" xml:space="preserve">
-    <value>User login is invalid</value>
+    <value>User login invalid</value>
     <comment>2</comment>
+  </data>
+  <data name="UserPasswordInvalid" xml:space="preserve">
+    <value>User password invalid</value>
+    <comment>3</comment>
+  </data>
+  <data name="UserPasswordRequired" xml:space="preserve">
+    <value>User password required</value>
+    <comment>4</comment>
   </data>
 </root>

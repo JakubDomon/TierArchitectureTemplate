@@ -1,5 +1,6 @@
 ﻿using Domain.DTO.Messages;
 using Domain.DTO.Requests;
+using Domain.Logic.Common.Validators.Rules;
 using Domain.Models.Validation.Specific;
 using System.Data;
 
@@ -15,13 +16,11 @@ namespace Domain.Logic.Common.Validators
             PrepareValidationRules(input);
             IEnumerable<IMessage> validationMessages = [];
 
-            var results = await Task.WhenAll(_validationRules
-                .Select(rule => rule.ValidateAsync()));
+            var results = (await Task.WhenAll(_validationRules
+                .Select(rule => rule.ValidateAsync())))
+                .SelectMany(m => m);
 
-            if (results.Length > 0)
-                validationMessages = results.Where(x => x != null).Cast<IMessage>();
-
-            return new(validationMessages);
+            return new(results ?? []);
         }
 
         protected void AddValidationRule(IValidationRule rule) => _validationRules.Add(rule);
