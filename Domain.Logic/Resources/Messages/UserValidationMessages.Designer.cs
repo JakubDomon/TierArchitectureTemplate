@@ -61,7 +61,7 @@ namespace Domain.Logic.Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User with provided login already exists.
+        ///   Looks up a localized string similar to User with provided login already exists..
         /// </summary>
         internal static string UserAlreadyExists {
             get {
@@ -70,7 +70,43 @@ namespace Domain.Logic.Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User login invalid.
+        ///   Looks up a localized string similar to User email invalid..
+        /// </summary>
+        internal static string UserEmailInvalid {
+            get {
+                return ResourceManager.GetString("UserEmailInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User email required..
+        /// </summary>
+        internal static string UserEmailRequired {
+            get {
+                return ResourceManager.GetString("UserEmailRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User first name required..
+        /// </summary>
+        internal static string UserFirstNameRequired {
+            get {
+                return ResourceManager.GetString("UserFirstNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User last name required..
+        /// </summary>
+        internal static string UserLastNameRequired {
+            get {
+                return ResourceManager.GetString("UserLastNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User login invalid..
         /// </summary>
         internal static string UserLoginInvalid {
             get {
@@ -79,7 +115,16 @@ namespace Domain.Logic.Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User password invalid.
+        ///   Looks up a localized string similar to User login required..
+        /// </summary>
+        internal static string UserLoginRequired {
+            get {
+                return ResourceManager.GetString("UserLoginRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User password invalid..
         /// </summary>
         internal static string UserPasswordInvalid {
             get {
@@ -88,7 +133,7 @@ namespace Domain.Logic.Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User password required.
+        ///   Looks up a localized string similar to User password required..
         /// </summary>
         internal static string UserPasswordRequired {
             get {

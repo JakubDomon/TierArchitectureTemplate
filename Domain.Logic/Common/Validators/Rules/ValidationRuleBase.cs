@@ -1,19 +1,19 @@
 ﻿using AutoMapper;
 using Domain.DTO.Messages;
-using Domain.Models.Validation.Specific;
-using fv = FluentValidation;
+using Domain.DTO.Messages.Specific;
+using Fv = FluentValidation;
 
 namespace Domain.Logic.Common.Validators.Rules
 {
-    internal abstract class ValidationRuleBase<T>(IMapper mapper, T input) 
-        : fv.AbstractValidator<T>, IValidationRule
+    internal abstract class ValidationRuleBase<T>(T input) 
+        : Fv.AbstractValidator<T>, IValidationRule
     {
         public async Task<IEnumerable<IMessage>> ValidateAsync()
         {
             PrepareSubRules();
-            fv.Results.ValidationResult result = await base.ValidateAsync(input);
+            Fv.Results.ValidationResult result = await base.ValidateAsync(input);
 
-            return mapper.Map<List<IMessage>>(result.Errors);
+            return result.Errors.Select(x => new ErrorMessage(x.ErrorCode, x.ErrorMessage));
         }
 
         protected abstract void PrepareSubRules();

@@ -4,6 +4,6 @@ namespace Domain.DTO.Requests.Specific.Membership
 {
     public record RegisterUserRequest : RequestBase
     {
-        public required UserDto UserData { get; set; }
+        public required RegisterUserDto UserData { get; set; }
     }
 }

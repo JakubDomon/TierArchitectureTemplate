@@ -2,6 +2,7 @@
 using Domain.DTO.Requests.Specific.Membership;
 using Domain.Logic.Common.Validators;
 using Domain.Logic.Modules.Validators.Membership.Rules;
+using Domain.Logic.Modules.Validators.Membership.Rules.DataRules;
 
 namespace Domain.Logic.Modules.Validators.Membership
 {
@@ -11,7 +12,8 @@ namespace Domain.Logic.Modules.Validators.Membership
 
         protected override void PrepareValidationRules(RegisterUserRequest input)
         {
-            AddValidationRule(new ValidateUserExistsRule(input.UserData.Username, _userRepository));
+            AddValidationRule(new RegisterUserDataRule(input.UserData));
+            AddValidationRule(new ValidateUserExistsRule(input.UserData.Login, _userRepository));
         }
     }
 }
