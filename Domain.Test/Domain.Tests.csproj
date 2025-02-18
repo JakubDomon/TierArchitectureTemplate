@@ -20,7 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess.Logic\DataAccess.Logic.csproj" />
     <ProjectReference Include="..\Domain.DTO\Domain.DTO.csproj" />
+    <ProjectReference Include="..\Domain.Logic\Domain.Logic.csproj" />
   </ItemGroup>
 
   <ItemGroup>

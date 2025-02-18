@@ -1,6 +1,7 @@
 ﻿using Domain.DTO.Models.Membership;
 using Domain.Logic.Common.Validators.Rules;
-using Domain.Logic.Resources.Messages;
+using Domain.Logic.Resources.Messages.Helpers;
+using Domain.Logic.Resources.Messages.Membership;
 using FluentValidation;
 
 namespace Domain.Logic.Modules.Validators.Membership.Rules.DataRules
@@ -9,11 +10,12 @@ namespace Domain.Logic.Modules.Validators.Membership.Rules.DataRules
     {
         protected override void PrepareSubRules()
         {
-            RuleFor(x => x.Login).NotEmpty().WithMessage(UserValidationMessages.UserLoginRequired);
-            RuleFor(x => x.Password).NotEmpty().WithMessage(UserValidationMessages.UserPasswordRequired);
-            RuleFor(x => x.Email).NotEmpty().WithMessage(UserValidationMessages.UserEmailRequired);
-            RuleFor(x => x.FirstName).NotEmpty().WithMessage(UserValidationMessages.UserFirstNameRequired);
-            RuleFor(x => x.LastName).NotEmpty().WithMessage(UserValidationMessages.UserLastNameRequired);
+            RuleFor(x => x.Login).NotEmpty().WithMessage(MembershipValidationMessages.UserLoginRequired)
+                .MinimumLength(3).WithMessage("");
+            RuleFor(x => x.Password).NotEmpty().WithMessage(MembershipValidationMessages.UserPasswordRequired);
+            RuleFor(x => x.Email).NotEmpty().WithMessage(MembershipValidationMessages.UserEmailRequired);
+            RuleFor(x => x.FirstName).NotEmpty().WithMessage(MembershipValidationMessages.UserFirstNameRequired);
+            RuleFor(x => x.LastName).NotEmpty().WithMessage(MembershipValidationMessages.UserLastNameRequired);
         }
     }
 }

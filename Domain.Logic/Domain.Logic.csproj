@@ -14,6 +14,8 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="API" />
+    <InternalsVisibleTo Include="Domain.Tests" />
+    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,17 +33,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\Messages\UserValidationMessages.Designer.cs">
+    <Compile Update="Resources\Messages\Membership\MembershipValidationMessages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>UserValidationMessages.resx</DependentUpon>
+      <DependentUpon>MembershipValidationMessages.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\Messages\UserValidationMessages.resx">
+    <EmbeddedResource Update="Resources\Messages\Membership\MembershipValidationMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>UserValidationMessages.Designer.cs</LastGenOutput>
+      <LastGenOutput>MembershipValidationMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

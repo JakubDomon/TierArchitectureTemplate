@@ -14,7 +14,6 @@ namespace Domain.Logic.Common.Validators
         public async Task<ValidationResult> ValidateAsync(Input input)
         {
             PrepareValidationRules(input);
-            IEnumerable<IMessage> validationMessages = [];
 
             var results = (await Task.WhenAll(_validationRules
                 .Select(rule => rule.ValidateAsync())))

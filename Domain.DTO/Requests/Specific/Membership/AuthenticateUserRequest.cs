@@ -1,4 +1,6 @@
-﻿namespace Domain.DTO.Requests.Specific.Membership
+﻿using Domain.DTO.Models.Membership;
+
+namespace Domain.DTO.Requests.Specific.Membership
 {
-    public record AuthenticateUserRequest(string Login, string Password) : RequestBase { }
+    public record AuthenticateUserRequest(AuthenticateUserDto AuthenticationData) : RequestBase { }
 }

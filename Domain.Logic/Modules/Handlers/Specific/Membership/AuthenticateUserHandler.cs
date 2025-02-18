@@ -29,7 +29,7 @@ namespace Domain.Logic.Modules.Handlers.Specific.Membership
 
         public async Task<HandlerResult<AuthenticateUserResponse>> HandleAsync(AuthenticateUserRequest request)
         {
-            DataOperationResult<AuthResult> result = await _authRepository.AuthenticateAsync(request.Login, request.Password);
+            DataOperationResult<AuthResult> result = await _authRepository.AuthenticateAsync(request.AuthenticationData.Login, request.AuthenticationData.Password);
 
             if (!result.IsSuccess)
                 return HandlerResultHelper.CreateHandlerResult<AuthenticateUserResponse>();
@@ -37,7 +37,6 @@ namespace Domain.Logic.Modules.Handlers.Specific.Membership
             User user = _mapper.Map<User>(result.Data?.UserData);
 
             return HandlerResultHelper.CreateHandlerResult(new AuthenticateUserResponse(
-                _mapper.Map<UserDto>(user),
                 JwtHelper.GenerateJwt(user, _config)));
         }
     }

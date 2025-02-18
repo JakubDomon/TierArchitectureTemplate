@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace DataAccess.Logic.Repositories.Generic
 {
-    public abstract class Repository<TEntity, TDto> : IRepository<TEntity, TDto>
+    public abstract class Repository<TEntity, TDto> : IRepository<TDto>
         where TEntity : class
         where TDto : BaseDto
     {

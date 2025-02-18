@@ -2,5 +2,5 @@
 
 namespace Domain.DTO.Responses.Specific.Membership
 {
-    public record AuthenticateUserResponse(UserDto UserData, string Token) : ResponseBase { }
+    public record AuthenticateUserResponse(string Token) : ResponseBase { }
 }

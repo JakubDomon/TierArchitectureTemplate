@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Domain.Logic.Resources.Messages {
+namespace Domain.Logic.Resources.Messages.Membership {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Domain.Logic.Resources.Messages {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class UserValidationMessages {
+    internal class MembershipValidationMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal UserValidationMessages() {
+        internal MembershipValidationMessages() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Domain.Logic.Resources.Messages {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Domain.Logic.Resources.Messages.UserValidationMessages", typeof(UserValidationMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Domain.Logic.Resources.Messages.Membership.MembershipValidationMessages", typeof(MembershipValidationMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
