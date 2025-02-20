@@ -33,6 +33,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\Messages\Common\CommonValidationMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommonValidationMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Messages\Common\Properties\PropertyNames.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PropertyNames.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Messages\Membership\MembershipValidationMessages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -41,6 +51,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Messages\Common\CommonValidationMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommonValidationMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Messages\Common\Properties\PropertyNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PropertyNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Messages\Membership\MembershipValidationMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MembershipValidationMessages.Designer.cs</LastGenOutput>

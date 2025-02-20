@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="UserAlreadyExists" xml:space="preserve">
-    <value>Użytkownik o podanym loginie już istnieje.</value>
+  <data name="PropertyRequired" xml:space="preserve">
+    <value>Pole '{0}' wymagane.</value>
+  </data>
+  <data name="PropertyValueTooLong" xml:space="preserve">
+    <value>Wartość pola '{0}' jest zbyt długa. Maksymalna długość to: {1}.</value>
+  </data>
+  <data name="PropertyValueTooShort" xml:space="preserve">
+    <value>Wartość pola '{0}' jest zbyt krótka. Minimalna długość to: {1}.</value>
   </data>
 </root>

@@ -1,6 +1,6 @@
 ﻿namespace Domain.Logic.Resources.Messages.Helpers
 {
-    internal static class MessageHelper
+    internal static class MessageHelperExtensions
     {
         public static string FillMessage(this string message, params object[] args)
         {
