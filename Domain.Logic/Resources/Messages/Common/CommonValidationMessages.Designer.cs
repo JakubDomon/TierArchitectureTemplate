@@ -70,6 +70,15 @@ namespace Domain.Logic.Resources.Messages.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Property &apos;{0}&apos; value is invalid..
+        /// </summary>
+        internal static string PropertyValueInvalid {
+            get {
+                return ResourceManager.GetString("PropertyValueInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Property &apos;{0}&apos; too long. Maximum length is: {1}..
         /// </summary>
         internal static string PropertyValueTooLong {

@@ -21,7 +21,7 @@ namespace DataAccess.Logic.Repositories.Authentication
             _mapper = mapper;
         }
 
-        public async Task<DataOperationResult<AuthResult>> AuthenticateAsync(string login, string password)
+        public async Task<DataOperationResult<AuthResult>> AuthenticateAsync(string login, string password, CancellationToken ct)
         {
             var user = await _userManager.FindByNameAsync(login);
 

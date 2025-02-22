@@ -18,7 +18,7 @@ namespace DataAccess.Logic.Repositories.Membership
             _userManager = userManager;
         }
 
-        public async Task<DataOperationResult<IEnumerable<UserDto>>> FindManyByRoleAsync(string roleName)
+        public async Task<DataOperationResult<IEnumerable<UserDto>>> FindManyByRoleAsync(string roleName, CancellationToken ct)
         {
             IEnumerable<User> users = await _userManager.GetUsersInRoleAsync(roleName);
 
@@ -27,7 +27,7 @@ namespace DataAccess.Logic.Repositories.Membership
                 : DataOperationResponseHelper.CreateResponse<IEnumerable<UserDto>>();
         }
 
-        public async Task<DataOperationResult<UserDto>> FindByIdAsync(Guid id)
+        public async Task<DataOperationResult<UserDto>> FindByIdAsync(Guid id, CancellationToken ct)
         {
             User? user = await _userManager.FindByIdAsync(id.ToString());
 
@@ -36,7 +36,7 @@ namespace DataAccess.Logic.Repositories.Membership
                 : DataOperationResponseHelper.CreateResponse<UserDto>();
         }
 
-        public async Task<DataOperationResult<UserDto>> RegisterAsync(UserDto userDTO)
+        public async Task<DataOperationResult<UserDto>> RegisterAsync(UserDto userDTO, CancellationToken ct)
         {
             User user = _mapper.Map<User>(userDTO);
             IdentityResult result = await _userManager.CreateAsync(user, userDTO.Password ?? string.Empty);
@@ -59,7 +59,7 @@ namespace DataAccess.Logic.Repositories.Membership
             return false;
         }
 
-        public async Task<DataOperationResult<UserDto>> UpdateAsync(Guid id, UserDto userDTO)
+        public async Task<DataOperationResult<UserDto>> UpdateAsync(Guid id, UserDto userDTO, CancellationToken ct)
         {
             User? user = await _userManager.FindByIdAsync(id.ToString());
 

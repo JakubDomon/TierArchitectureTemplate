@@ -1,7 +1,6 @@
-﻿using AutoMapper;
-using DataAccess.Logic.Repositories.Membership;
+﻿using DataAccess.Logic.Repositories.Membership;
 using Domain.Logic.Common.Validators.Rules;
-using Domain.Logic.Resources.Messages;
+using Domain.Logic.Resources.Messages.Membership;
 using FluentValidation;
 
 namespace Domain.Logic.Modules.Validators.Membership.Rules
@@ -12,9 +11,9 @@ namespace Domain.Logic.Modules.Validators.Membership.Rules
 
         protected override void PrepareSubRules()
         {
-            RuleFor(x => x).MustAsync((x, cancellation) => UserExists(x)).WithMessage(UserValidationMessages.UserAlreadyExists);
+            RuleFor(x => x).MustAsync((x, cancellation) => UserExists(x, cancellation)).WithMessage(MembershipValidationMessages.UserAlreadyExists);
         }
 
-        private async Task<bool> UserExists(string userLogin) => await _userRepository.UserExists(userLogin);
+        private async Task<bool> UserExists(string userLogin, CancellationToken cancellation) => await _userRepository.UserExists(userLogin);
     }
 }

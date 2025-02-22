@@ -19,6 +19,8 @@ namespace DataAccess.Tests.Repositories
         [InlineData("TestUserNameNotExist", "IncorrectPasstword", false)]
         public async void Authenticate_ShouldReturnDataOperationResult(string login, string password, bool shouldAuthenticate)
         {
+            CancellationToken cancellationToken = new CancellationToken();
+
             // Arrange
             var mapper = new MapperConfiguration(cfg =>
             {
@@ -46,7 +48,7 @@ namespace DataAccess.Tests.Repositories
             IAuthRepository authRepository = new AuthRepository(fakeMockUserManager.Object, fakeMockSignInManager.Object, mapper);
 
             // Act
-            DataOperationResult<AuthResult> result = await authRepository.AuthenticateAsync(login, password);
+            DataOperationResult<AuthResult> result = await authRepository.AuthenticateAsync(login, password, cancellationToken);
 
             // Assert
             Assert.NotNull(result);

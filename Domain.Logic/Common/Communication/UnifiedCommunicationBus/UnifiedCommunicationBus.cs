@@ -21,7 +21,7 @@ namespace Domain.Logic.Common.Communication.UnifiedCommunicationBus
             _handlerProvider = handlerProvider;
         }
 
-        public async Task<UnifiedResponse<Output>> ExecuteAsync<Input, Output>(UnifiedRequest<Input> request)
+        public async Task<UnifiedResponse<Output>> ExecuteAsync<Input, Output>(UnifiedRequest<Input> request, CancellationToken ct)
             where Input : RequestBase
             where Output : ResponseBase, new()
         {
@@ -32,7 +32,7 @@ namespace Domain.Logic.Common.Communication.UnifiedCommunicationBus
                 return UnifiedCommunicationHelper.CreateValidationErrorResponse<Output>(validationResult);
             }
 
-            HandlerResult<Output> handlerResult = await _handlerProvider.GetHandler<Input, Output>().HandleAsync(request.Data);
+            HandlerResult<Output> handlerResult = await _handlerProvider.GetHandler<Input, Output>().HandleAsync(request.Data, ct);
 
             return UnifiedCommunicationHelper.CreateHandlerResponse(handlerResult);
         }

@@ -22,11 +22,11 @@ namespace Domain.Logic.Modules.Handlers.Specific.Membership
             _mapper = mapper;
         }
 
-        public async Task<HandlerResult<RegisterUserResponse>> HandleAsync(RegisterUserRequest request)
+        public async Task<HandlerResult<RegisterUserResponse>> HandleAsync(RegisterUserRequest request, CancellationToken ct)
         {
             User user = _mapper.Map<User>(request.UserData);
 
-            DataOperationResult<dataUserDto.UserDto> result = await _userRepository.RegisterAsync(_mapper.Map<dataUserDto.UserDto>(user));
+            DataOperationResult<dataUserDto.UserDto> result = await _userRepository.RegisterAsync(_mapper.Map<dataUserDto.UserDto>(user), ct);
 
             return result.IsSuccess
                 ? HandlerResultHelper.CreateHandlerResult(new RegisterUserResponse() 

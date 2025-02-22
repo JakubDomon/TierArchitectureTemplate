@@ -27,9 +27,9 @@ namespace Domain.Logic.Modules.Handlers.Specific.Membership
             _config = config;
         }
 
-        public async Task<HandlerResult<AuthenticateUserResponse>> HandleAsync(AuthenticateUserRequest request)
+        public async Task<HandlerResult<AuthenticateUserResponse>> HandleAsync(AuthenticateUserRequest request, CancellationToken ct)
         {
-            DataOperationResult<AuthResult> result = await _authRepository.AuthenticateAsync(request.AuthenticationData.Login, request.AuthenticationData.Password);
+            DataOperationResult<AuthResult> result = await _authRepository.AuthenticateAsync(request.AuthenticationData.Login, request.AuthenticationData.Password, ct);
 
             if (!result.IsSuccess)
                 return HandlerResultHelper.CreateHandlerResult<AuthenticateUserResponse>();

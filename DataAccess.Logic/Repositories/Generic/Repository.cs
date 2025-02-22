@@ -22,64 +22,64 @@ namespace DataAccess.Logic.Repositories.Generic
             _mapper = mapper;
         }
 
-        public async Task<DataOperationResult<TDto>> AddAsync(TDto dto)
+        public async Task<DataOperationResult<TDto>> AddAsync(TDto dto, CancellationToken ct)
         {
             var entity = _mapper.Map<TEntity>(dto);
-            await _dbSet.AddAsync(entity);
+            await _dbSet.AddAsync(entity, ct);
 
-            return await _dbContext.SaveChangesAsync() > 0
+            return await _dbContext.SaveChangesAsync(ct) > 0
                 ? DataOperationResponseHelper.CreateResponse(_mapper.Map<TDto>(entity))
                 : DataOperationResponseHelper.CreateResponse<TDto>();
         }
 
-        public async Task<bool> AnyAsync()
+        public async Task<bool> AnyAsync(CancellationToken ct)
         {
-            return await _dbSet.AnyAsync();
+            return await _dbSet.AnyAsync(ct);
         }
 
-        public async Task<int> CountAsync()
+        public async Task<int> CountAsync(CancellationToken ct)
         {
-            return await _dbSet.CountAsync();
+            return await _dbSet.CountAsync(ct);
         }
 
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task<bool> DeleteAsync(Guid id, CancellationToken ct)
         {
-            var entity = _dbSet.Find(id);
+            var entity = await _dbSet.FindAsync(id, ct);
 
             if (entity is null)
                 return false;
 
             _dbSet.Remove(entity);
 
-            return await _dbContext.SaveChangesAsync() > 0;
+            return await _dbContext.SaveChangesAsync(ct) > 0;
         }
 
-        public async Task<bool> DeleteManyAsync(Expression<Func<TDto, bool>> predicate)
+        public async Task<bool> DeleteManyAsync(Expression<Func<TDto, bool>> predicate, CancellationToken ct)
         {
             var entityPredicate = _mapper.Map<Expression<Func<TEntity, bool>>>(predicate);
             IQueryable<TEntity> entities = _dbSet.Where(entityPredicate);
 
-            if (!entities.Any())
+            if (!(await entities.AnyAsync(ct)))
                 return false;
 
             _dbSet.RemoveRange(entities);
 
-            return await _dbContext.SaveChangesAsync() > 0;
+            return await _dbContext.SaveChangesAsync(ct) > 0;
         }
 
-        public async Task<DataOperationResult<IEnumerable<TDto>>> FindAsync(Expression<Func<TDto, bool>> predicate) 
+        public async Task<DataOperationResult<IEnumerable<TDto>>> FindAsync(Expression<Func<TDto, bool>> predicate, CancellationToken ct) 
         {
             var entityPredicate = _mapper.Map<Expression<Func<TEntity, bool>>>(predicate);
-            IEnumerable<TEntity> entities = await _dbSet.Where(entityPredicate).ToListAsync();
+            IEnumerable<TEntity> entities = await _dbSet.Where(entityPredicate).ToListAsync(ct);
 
             return DataOperationResponseHelper.CreateResponse(_mapper.Map<IEnumerable<TDto>>(entities));
         }
 
-        public async Task<DataOperationResult<IEnumerable<TDto>>> GetAllAsync() 
-            => DataOperationResponseHelper.CreateResponse(_mapper.Map<IEnumerable<TDto>>(await _dbSet.ToListAsync()));
+        public async Task<DataOperationResult<IEnumerable<TDto>>> GetAllAsync(CancellationToken ct) 
+            => DataOperationResponseHelper.CreateResponse(_mapper.Map<IEnumerable<TDto>>(await _dbSet.ToListAsync(ct)));
 
-        public abstract Task<DataOperationResult<TDto>> FindByIdAsync(Guid id);
+        public abstract Task<DataOperationResult<TDto>> FindByIdAsync(Guid id, CancellationToken ct);
 
-        public abstract Task<DataOperationResult<TDto>> UpdateAsync(Guid id, TDto entity);
+        public abstract Task<DataOperationResult<TDto>> UpdateAsync(Guid id, TDto entity, CancellationToken ct);
     }
 }

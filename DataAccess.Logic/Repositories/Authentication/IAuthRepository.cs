@@ -5,6 +5,6 @@ namespace DataAccess.Logic.Repositories.Authentication
 {
     public interface IAuthRepository
     {
-        public Task<DataOperationResult<AuthResult>> AuthenticateAsync(string login, string password);
+        public Task<DataOperationResult<AuthResult>> AuthenticateAsync(string login, string password, CancellationToken ct);
     }
 }

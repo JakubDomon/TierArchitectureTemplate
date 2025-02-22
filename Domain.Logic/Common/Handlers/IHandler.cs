@@ -8,6 +8,6 @@ namespace Domain.Logic.Common.Handlers
         where Input : RequestBase
         where Output : ResponseBase
     {
-        public Task<HandlerResult<Output>> HandleAsync(Input request);
+        public Task<HandlerResult<Output>> HandleAsync(Input request, CancellationToken ct);
     }
 }

@@ -35,6 +35,8 @@ namespace DataAccess.Tests.Repositories
         [InlineData("e5a429f7-42f4-4971-8ade-896e1d91cd0e", false)]
         public async void FindById_ShouldReturnDataOperationResult(string id, bool shouldSucceed)
         {
+            CancellationToken cancellationToken = new CancellationToken();
+
             // Arrange
             User? user = MembershipContextDataHelper.GetFakeUsersSet().FirstOrDefault(x => x.Id.Equals(new Guid(id)));
 
@@ -43,7 +45,7 @@ namespace DataAccess.Tests.Repositories
                 .ReturnsAsync(user);
             
             // Act
-            DataOperationResult<UserDto> result = await _userRepository.FindByIdAsync(new Guid(id));
+            DataOperationResult<UserDto> result = await _userRepository.FindByIdAsync(new Guid(id), cancellationToken);
 
             // Assert
             if (shouldSucceed)
@@ -66,6 +68,8 @@ namespace DataAccess.Tests.Repositories
         [InlineData(false)]
         public async void RegisterAsync_ShouldReturnDataOperationResult(bool shouldUserCreationSucceed)
         {
+            CancellationToken cancellationToken = new CancellationToken();
+
             // Arrange
             UserDto userDto = new()
             {
@@ -88,7 +92,7 @@ namespace DataAccess.Tests.Repositories
                         }));
 
             // Act
-            DataOperationResult<UserDto> result = await _userRepository.RegisterAsync(userDto);
+            DataOperationResult<UserDto> result = await _userRepository.RegisterAsync(userDto, cancellationToken);
 
             // Assert
             if (shouldUserCreationSucceed)
@@ -155,6 +159,8 @@ namespace DataAccess.Tests.Repositories
         [InlineData(false)]
         public async void UpdateUser_ShouldReturnDataOperationResult(bool shouldUserBeFound)
         {
+            CancellationToken cancellationToken = new CancellationToken();
+
             // Arrange
             User oldUserData = new()
             {
@@ -184,7 +190,7 @@ namespace DataAccess.Tests.Repositories
                 .ReturnsAsync(IdentityResult.Success);
 
             // Act
-            DataOperationResult<UserDto> result = await _userRepository.UpdateAsync(new Guid(), newUserData);
+            DataOperationResult<UserDto> result = await _userRepository.UpdateAsync(new Guid(), newUserData, cancellationToken);
 
             // Assert
             if (shouldUserBeFound)

@@ -120,28 +120,4 @@
   <data name="UserAlreadyExists" xml:space="preserve">
     <value>User with provided login already exists.</value>
   </data>
-  <data name="UserEmailInvalid" xml:space="preserve">
-    <value>User email invalid.</value>
-  </data>
-  <data name="UserEmailRequired" xml:space="preserve">
-    <value>User email required.</value>
-  </data>
-  <data name="UserFirstNameRequired" xml:space="preserve">
-    <value>User first name required.</value>
-  </data>
-  <data name="UserLastNameRequired" xml:space="preserve">
-    <value>User last name required.</value>
-  </data>
-  <data name="UserLoginInvalid" xml:space="preserve">
-    <value>User login invalid.</value>
-  </data>
-  <data name="UserLoginRequired" xml:space="preserve">
-    <value>User login required.</value>
-  </data>
-  <data name="UserPasswordInvalid" xml:space="preserve">
-    <value>User password invalid.</value>
-  </data>
-  <data name="UserPasswordRequired" xml:space="preserve">
-    <value>User password required.</value>
-  </data>
 </root>
