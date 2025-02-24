@@ -5,7 +5,7 @@ using DataAccess.Logic.Repositories.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace DataAccess.Logic.Repositories.Generic
+namespace DataAccess.Logic.Repositories.Common
 {
     public abstract class Repository<TEntity, TDto> : IRepository<TDto>
         where TEntity : class

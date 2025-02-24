@@ -1,6 +1,6 @@
-﻿namespace DataAccess.DTO.Membership
+﻿namespace DataAccess.DTO.Membership.Actions
 {
-    public record UserDto : EntityDto
+    public record RegisterUserDto : ActionDto
     {
         public string? UserName { get; init; }
         public string? Password { get; init; }

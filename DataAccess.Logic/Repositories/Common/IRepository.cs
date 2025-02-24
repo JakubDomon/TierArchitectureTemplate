@@ -2,7 +2,7 @@
 using DataAccess.DTO.CommunicationObjects;
 using System.Linq.Expressions;
 
-namespace DataAccess.Logic.Repositories.Generic
+namespace DataAccess.Logic.Repositories.Common
 {
     public interface IRepository<TDto>
         where TDto : BaseDto

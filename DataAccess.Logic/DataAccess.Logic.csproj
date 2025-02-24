@@ -31,8 +31,8 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="API" />
-    <InternalsVisibleTo Include="DataAccess.Tests"/>
-    <InternalsVisibleTo Include="DynamicProxyGenAssembly2"/>
+    <InternalsVisibleTo Include="DataAccess.Tests" />
+    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
   </ItemGroup>
   
   <ItemGroup>
