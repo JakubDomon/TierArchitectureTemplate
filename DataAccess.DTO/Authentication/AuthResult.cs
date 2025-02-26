@@ -1,4 +1,6 @@
-﻿namespace DataAccess.DTO.Authentication
+﻿using DataAccess.DTO.Membership;
+
+namespace DataAccess.DTO.Authentication
 {
-    public record AuthResult(bool IsAuthenticated);
+    public record AuthResult(bool IsAuthenticated, UserDto? UserData) : ActionDto;
 }

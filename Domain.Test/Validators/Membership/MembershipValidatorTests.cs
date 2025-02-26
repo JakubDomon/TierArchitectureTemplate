@@ -18,7 +18,7 @@ namespace Domain.Tests.Validators.Membership
             string[] existingUserLogins = ["validUser1", "validUser2"];
 
             userRepositoryMock.Setup(x => x.UserExists(It.IsAny<string>()))
-                .ReturnsAsync(existingUserLogins.Contains(request.UserData.Login));
+                .ReturnsAsync(existingUserLogins.Contains(request.UserData.UserName));
 
             // Act
             var validator = new RegisterUserValidator(userRepositoryMock.Object);

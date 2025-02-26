@@ -29,10 +29,7 @@ namespace Domain.Logic.Modules.Handlers.Specific.Membership
             DataOperationResult<dataUserDto.UserDto> result = await _userRepository.RegisterAsync(_mapper.Map<dataUserDto.UserDto>(user), ct);
 
             return result.IsSuccess
-                ? HandlerResultHelper.CreateHandlerResult(new RegisterUserResponse() 
-                    { 
-                        UserId = result.Data.Id
-                    })
+                ? HandlerResultHelper.CreateHandlerResult(new RegisterUserResponse(result.Data?.Id ?? Guid.Empty))
                 : HandlerResultHelper.CreateHandlerResult<RegisterUserResponse>();
         }
     }

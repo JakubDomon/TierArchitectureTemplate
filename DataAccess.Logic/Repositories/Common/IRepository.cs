@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 namespace DataAccess.Logic.Repositories.Common
 {
     public interface IRepository<TDto>
-        where TDto : BaseDto
+        where TDto : EntityDto
     {
         public Task<DataOperationResult<IEnumerable<TDto>>> GetAllAsync(CancellationToken ct);
         public Task<DataOperationResult<TDto>> FindByIdAsync(Guid id, CancellationToken ct);

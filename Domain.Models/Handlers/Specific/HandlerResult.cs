@@ -7,8 +7,8 @@ namespace Domain.Models.Handlers.Specific
     public record HandlerResult<Output>
         where Output : ResponseBase
     {
-        public IEnumerable<IMessage> Messages { get; set; } = [];
-        public bool IsSucceeded => !Messages.Any(x => x.Type == MessageType.Error) && Data != null;
-        public Output? Data { get; set; }
+        public IEnumerable<IMessage> Messages { get; init; } = [];
+        public bool IsSuccess => !Messages.Any(x => x.Type == MessageType.Error) && Data != null;
+        public Output? Data { get; init; }
     }
 }

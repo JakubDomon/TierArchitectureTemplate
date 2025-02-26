@@ -11,7 +11,7 @@ namespace Domain.Tests.TestDataGenerators.Membership
             {
                 new RegisterUserRequest(new RegisterUserDto()
                     {
-                        Login = "TestLogin",
+                        UserName = "TestLogin",
                         Password = "PasswordTest",
                         Email = "EmailTest",
                         FirstName = "FirstName",
@@ -24,7 +24,7 @@ namespace Domain.Tests.TestDataGenerators.Membership
             {
                 new RegisterUserRequest(new RegisterUserDto()
                     {
-                        Login = "TestLogin2",
+                        UserName = "TestLogin2",
                         Password = "PasswordTest2",
                         Email = "EmailTes2t",
                         FirstName = "FirstName2",

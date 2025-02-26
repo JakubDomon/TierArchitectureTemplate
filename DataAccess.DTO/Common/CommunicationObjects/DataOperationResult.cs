@@ -19,6 +19,6 @@ namespace DataAccess.DTO.CommunicationObjects
                 return true;
             } 
         }
-        public T? Data { get; set; }
+        public T? Data { get; init; }
     }
 }

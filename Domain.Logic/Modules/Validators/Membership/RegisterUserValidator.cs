@@ -13,7 +13,7 @@ namespace Domain.Logic.Modules.Validators.Membership
         protected override void PrepareValidationRules(RegisterUserRequest input)
         {
             AddValidationRule(new RegisterUserDataRule(input.UserData));
-            AddValidationRule(new ValidateUserExistsRule(input.UserData.Login, _userRepository));
+            AddValidationRule(new ValidateUserExistsRule(input.UserData.UserName, _userRepository));
         }
     }
 }

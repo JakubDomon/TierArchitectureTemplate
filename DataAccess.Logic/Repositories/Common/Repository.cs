@@ -9,7 +9,7 @@ namespace DataAccess.Logic.Repositories.Common
 {
     public abstract class Repository<TEntity, TDto> : IRepository<TDto>
         where TEntity : class
-        where TDto : BaseDto
+        where TDto : EntityDto
     {
         private readonly DbContext _dbContext;
         private readonly DbSet<TEntity> _dbSet;

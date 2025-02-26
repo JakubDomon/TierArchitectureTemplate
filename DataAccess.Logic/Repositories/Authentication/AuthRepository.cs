@@ -30,9 +30,7 @@ namespace DataAccess.Logic.Repositories.Authentication
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, password, false);
 
-            return result.Succeeded
-                ? DataOperationResponseHelper.CreateResponse(new AuthResult(_mapper.Map<UserDto>(user)))
-                : DataOperationResponseHelper.CreateResponse<AuthResult>();
+            return DataOperationResponseHelper.CreateResponse(new AuthResult(result.Succeeded, result.Succeeded ? _mapper.Map<UserDto>(user) : default));
         }
     }
 }

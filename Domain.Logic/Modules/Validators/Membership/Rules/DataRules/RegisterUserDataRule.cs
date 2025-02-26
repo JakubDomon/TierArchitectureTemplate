@@ -12,7 +12,7 @@ namespace Domain.Logic.Modules.Validators.Membership.Rules.DataRules
     {
         protected override void PrepareSubRules()
         {
-            RuleFor(x => x.Login)
+            RuleFor(x => x.UserName)
                 .NotEmpty().WithMessage(CommonValidationMessages.PropertyRequired.FillMessage(PropertyNames.Login))
                 .MinimumLength(3).WithMessage(CommonValidationMessages.PropertyValueTooShort.FillMessage(PropertyNames.Login, 3))
                 .MaximumLength(10).WithMessage(CommonValidationMessages.PropertyValueTooLong.FillMessage(PropertyNames.Login, 10));
