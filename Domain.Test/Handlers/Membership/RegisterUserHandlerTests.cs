@@ -57,5 +57,33 @@ namespace Domain.Tests.Handlers.Membership
             Assert.True(result.IsSuccess);
             Assert.Equal(dataOperationResult.Data.Id, result?.Data?.UserId);
         }
+
+        [Fact]
+        public async Task HandleAsync_FailedRegistration_ReturnsHandlerResultWithoutUserId()
+        {
+            // Arrange
+            var request = new RegisterUserRequest(new RegisterUserDto()
+            {
+                UserName = "TestUserName",
+                Password = "TestPassword",
+                Email = "TestEmail@email.com",
+                FirstName = "FirstName",
+                LastName = "LastName",
+                PhoneNumber = "123123123"
+            });
+            var dataOperationResult = new DataOperationResult<UserDto>();
+
+            _userRepositoryMock.Setup(repo => repo.RegisterAsync(It.IsAny<UserDto>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(dataOperationResult);
+
+
+            // Act
+            var result = await _handler.HandleAsync(request, CancellationToken.None);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.False(result.IsSuccess);
+            Assert.Null(result?.Data?.UserId);
+        }
     }
 }
