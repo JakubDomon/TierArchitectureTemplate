@@ -1,5 +1,5 @@
-﻿using Domain.DTO.Requests.Specific.Membership;
-using Domain.DTO.Responses.Specific.Membership;
+﻿using Domain.DTO.Commands.Specific.Membership;
+using Domain.DTO.Models.Membership;
 using Domain.Logic.Common.Handlers;
 using Domain.Logic.Common.Handlers.Providers;
 using Domain.Logic.Common.Validators;
@@ -20,10 +20,10 @@ namespace Domain.Logic.Configuration
             services.AddSingleton<IHandlerProvider, HandlerProvider>();
 
             // Validators
-            services.AddScoped<IValidator<RegisterUserRequest>, RegisterUserValidator>();
+            services.AddScoped<IValidator<RegisterUserCommand>, RegisterUserValidator>();
 
             // Handlers
-            services.AddScoped<IHandler<RegisterUserRequest, RegisterUserResponse>, RegisterUserHandler>();
+            services.AddScoped<IHandler<RegisterUserCommand, RegisterUserDto>, RegisterUserHandler>();
         }
     }
 }

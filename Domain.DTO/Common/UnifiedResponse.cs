@@ -1,13 +1,11 @@
 ﻿using Domain.DTO.Messages;
 using Domain.DTO.Messages.Enums;
-using Domain.DTO.Responses;
 
-namespace Domain.DTO.Responses.Common
+namespace Domain.DTO.Common
 {
-    public record UnifiedResponse<ResponseData>
-        where ResponseData : ResponseBase
+    public record UnifiedResponse<Payload>
     {
-        public ResponseData? Data { get; set; }
+        public Payload? Data { get; set; }
         public IEnumerable<IMessage> Messages { get; set; } = [];
         public bool IsSuccess
         {

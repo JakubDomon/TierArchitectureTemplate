@@ -1,14 +1,13 @@
-﻿using Domain.DTO.Models.Membership;
+﻿using Domain.DTO.Commands.Specific.Membership;
 using Domain.Logic.Common.Validators.Rules;
 using Domain.Logic.Resources.Messages.Common;
 using Domain.Logic.Resources.Messages.Common.Properties;
 using Domain.Logic.Resources.Messages.Helpers;
-using Domain.Logic.Resources.Messages.Membership;
 using FluentValidation;
 
 namespace Domain.Logic.Modules.Validators.Membership.Rules.DataRules
 {
-    internal class RegisterUserDataRule(RegisterUserDto userDto) : ValidationRuleBase<RegisterUserDto>(userDto)
+    internal class RegisterUserDataRule(RegisterUserCommand userDto) : ValidationRuleBase<RegisterUserCommand>(userDto)
     {
         protected override void PrepareSubRules()
         {

@@ -1,5 +1,4 @@
-﻿using Domain.DTO.Requests;
-using Domain.DTO.Responses;
+﻿using Domain.DTO.Common;
 
 namespace Domain.Logic.Common.Handlers.Providers
 {
@@ -13,8 +12,8 @@ namespace Domain.Logic.Common.Handlers.Providers
         }
 
         public IHandler<Input, Output> GetHandler<Input, Output>()
-            where Input : RequestBase
-            where Output : ResponseBase
+            where Input : IAction
+            where Output : class
         {
             var handler = _serviceProvider.GetService(typeof(IHandler<Input, Output>));
 

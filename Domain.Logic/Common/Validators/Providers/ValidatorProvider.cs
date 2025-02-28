@@ -1,5 +1,4 @@
-﻿using Domain.DTO.Requests;
-using System.Reflection;
+﻿using Domain.DTO.Common;
 
 namespace Domain.Logic.Common.Validators.Providers
 {
@@ -12,14 +11,14 @@ namespace Domain.Logic.Common.Validators.Providers
             _serviceProvider = serviceProvider;
         }
 
-        public IValidator<Input> GetValidator<Input>() where Input : RequestBase
+        public IValidator<Action> GetValidator<Action>() where Action : IAction
         {
-            var validator = _serviceProvider.GetService(typeof(IValidator<Input>));
+            var validator = _serviceProvider.GetService(typeof(IValidator<Action>));
 
             if (validator is null)
-                throw new InvalidOperationException($"No validator found for input type {typeof(Input).Name}");
+                throw new InvalidOperationException($"No validator found for input type {typeof(Action).Name}");
 
-            return (IValidator<Input>)validator;
+            return (IValidator<Action>)validator;
         }
     }
 }

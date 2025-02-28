@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace API.DTO.MessagesResources {
+namespace API.Resources.MessagesResources.Membership {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace API.DTO.MessagesResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("API.DTO.MessagesResources.MembershipValidationMessages", typeof(MembershipValidationMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("API.Resources.MessagesResources.Membership.MembershipValidationMessages", typeof(MembershipValidationMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

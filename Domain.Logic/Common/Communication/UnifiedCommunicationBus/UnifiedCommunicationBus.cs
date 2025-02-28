@@ -1,7 +1,4 @@
-﻿using Domain.DTO.Requests;
-using Domain.DTO.Requests.Common;
-using Domain.DTO.Responses;
-using Domain.DTO.Responses.Common;
+﻿using Domain.DTO.Common;
 using Domain.Logic.Common.Communication.UnifiedCommunicationBus.Helpers;
 using Domain.Logic.Common.Handlers.Providers;
 using Domain.Logic.Common.Validators.Providers;
@@ -22,8 +19,8 @@ namespace Domain.Logic.Common.Communication.UnifiedCommunicationBus
         }
 
         public async Task<UnifiedResponse<Output>> ExecuteAsync<Input, Output>(UnifiedRequest<Input> request, CancellationToken ct)
-            where Input : RequestBase
-            where Output : ResponseBase, new()
+            where Input : IAction
+            where Output : class, new()
         {
             ValidationResult validationResult = await _validatorProvider.GetValidator<Input>().ValidateAsync(request.Data);
 

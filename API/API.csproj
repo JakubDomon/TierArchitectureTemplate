@@ -29,7 +29,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Compile Update="DTO\MessagesResources\MembershipValidationMessages.Designer.cs">
+    <Compile Update="Resources\MessagesResources\Membership\MembershipValidationMessages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>MembershipValidationMessages.resx</DependentUpon>
@@ -37,10 +37,10 @@
   </ItemGroup>
   
   <ItemGroup>
-    <EmbeddedResource Update="DTO\MessagesResources\MembershipValidationMessages.pl.resx">
+    <EmbeddedResource Update="Resources\MessagesResources\Membership\MembershipValidationMessages.pl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="DTO\MessagesResources\MembershipValidationMessages.resx">
+    <EmbeddedResource Update="Resources\MessagesResources\Membership\MembershipValidationMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MembershipValidationMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>

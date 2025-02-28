@@ -1,11 +1,11 @@
-﻿using Domain.DTO.Requests.Specific.Membership;
+﻿using Domain.DTO.Commands.Specific.Membership;
 using Domain.Logic.Common.Validators;
 
 namespace Domain.Logic.Modules.Validators.Membership
 {
-    internal class AuthenticateUserValidator() : ValidatorBase<AuthenticateUserRequest>
+    internal class AuthenticateUserValidator() : ValidatorBase<AuthenticateUserCommand>
     {
-        protected override void PrepareValidationRules(AuthenticateUserRequest input)
+        protected override void PrepareValidationRules(AuthenticateUserCommand input)
         {
             
         }

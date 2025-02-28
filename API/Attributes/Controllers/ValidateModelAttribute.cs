@@ -18,7 +18,7 @@ namespace API.Attributes.Controllers
                 context.Result = new BadRequestObjectResult(new
                 {
                     Message = "Validation failed",
-                    Errors = errors
+                    Errors = errors,
                 });
             }
         }

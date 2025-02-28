@@ -2,8 +2,8 @@
 using DataAccess.DTO.CommunicationObjects;
 using DataAccess.DTO.Membership;
 using DataAccess.Logic.Repositories.Membership;
+using Domain.DTO.Commands.Specific.Membership;
 using Domain.DTO.Models.Membership;
-using Domain.DTO.Requests.Specific.Membership;
 using Domain.Logic.Modules.Handlers.Specific.Membership;
 using Domain.Models.BusinessModels.Membership;
 using Moq;
@@ -34,15 +34,7 @@ namespace Domain.Tests.Handlers.Membership
         public async Task HandleAsync_SuccessfulRegistration_ReturnsHandlerResultWithUserId()
         {
             // Arrange
-            var request = new RegisterUserRequest(new RegisterUserDto()
-            {
-                UserName = "TestUserName",
-                Password = "TestPassword",
-                Email = "TestEmail@email.com",
-                FirstName = "FirstName",
-                LastName = "LastName",
-                PhoneNumber = "123123123"
-            });
+            var request = new RegisterUserCommand("TestUserName", "TestPassword", "TestEmail@email.com", "FirstName", "LastName", "123123123");
             var dataOperationResult = new DataOperationResult<UserDto>() { Data =  new UserDto() { Id = Guid.NewGuid() } };
 
             _userRepositoryMock.Setup(repo => repo.RegisterAsync(It.IsAny<UserDto>(), It.IsAny<CancellationToken>()))
@@ -62,15 +54,7 @@ namespace Domain.Tests.Handlers.Membership
         public async Task HandleAsync_FailedRegistration_ReturnsHandlerResultWithoutUserId()
         {
             // Arrange
-            var request = new RegisterUserRequest(new RegisterUserDto()
-            {
-                UserName = "TestUserName",
-                Password = "TestPassword",
-                Email = "TestEmail@email.com",
-                FirstName = "FirstName",
-                LastName = "LastName",
-                PhoneNumber = "123123123"
-            });
+            var request = new RegisterUserCommand("TestUserName", "TestPassword", "TestEmail@email.com", "FirstName", "LastName", "123123123");
             var dataOperationResult = new DataOperationResult<UserDto>();
 
             _userRepositoryMock.Setup(repo => repo.RegisterAsync(It.IsAny<UserDto>(), It.IsAny<CancellationToken>()))

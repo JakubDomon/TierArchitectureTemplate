@@ -1,5 +1,4 @@
-﻿using Domain.DTO.Models.Membership;
-using Domain.DTO.Requests.Specific.Membership;
+﻿using Domain.DTO.Commands.Specific.Membership;
 
 namespace Domain.Tests.TestDataGenerators.Membership
 {
@@ -9,27 +8,13 @@ namespace Domain.Tests.TestDataGenerators.Membership
         {
             yield return new object[]
             {
-                new RegisterUserRequest(new RegisterUserDto()
-                    {
-                        UserName = "TestLogin",
-                        Password = "PasswordTest",
-                        Email = "EmailTest",
-                        FirstName = "FirstName",
-                        LastName = "LastName"
-                    }),
+                new RegisterUserCommand("TestLogin", "PasswordTest", "EmailTest", "FirstName", "LastName", null),
                 false
             };
 
             yield return new object[]
             {
-                new RegisterUserRequest(new RegisterUserDto()
-                    {
-                        UserName = "TestLogin2",
-                        Password = "PasswordTest2",
-                        Email = "EmailTes2t",
-                        FirstName = "FirstName2",
-                        LastName = "LastName2"
-                    }),
+                new RegisterUserCommand("TestLogin2", "PasswordTest2", "EmailTest2", "FirstName2", "LastName2", null),
                 true
             };
         }

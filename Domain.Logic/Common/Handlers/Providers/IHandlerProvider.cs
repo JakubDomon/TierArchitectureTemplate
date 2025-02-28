@@ -1,12 +1,11 @@
-﻿using Domain.DTO.Requests;
-using Domain.DTO.Responses;
+﻿using Domain.DTO.Common;
 
 namespace Domain.Logic.Common.Handlers.Providers
 {
     internal interface IHandlerProvider
     {
         public IHandler<Input, Output> GetHandler<Input, Output>()
-            where Input : RequestBase
-            where Output : ResponseBase;
+            where Input : IAction
+            where Output : class;
     }
 }

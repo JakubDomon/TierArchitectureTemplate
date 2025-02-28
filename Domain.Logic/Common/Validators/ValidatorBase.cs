@@ -1,17 +1,16 @@
-﻿using Domain.DTO.Messages;
-using Domain.DTO.Requests;
+﻿using Domain.DTO.Common;
 using Domain.Logic.Common.Validators.Rules;
 using Domain.Models.Validation.Specific;
 using System.Data;
 
 namespace Domain.Logic.Common.Validators
 {
-    internal abstract class ValidatorBase<Input> : IValidator<Input>
-        where Input : RequestBase
+    internal abstract class ValidatorBase<Action> : IValidator<Action>
+        where Action : IAction
     {
         private HashSet<IValidationRule> _validationRules { get; set; } = [];
 
-        public async Task<ValidationResult> ValidateAsync(Input input)
+        public async Task<ValidationResult> ValidateAsync(Action input)
         {
             PrepareValidationRules(input);
 
@@ -23,6 +22,6 @@ namespace Domain.Logic.Common.Validators
         }
 
         protected void AddValidationRule(IValidationRule rule) => _validationRules.Add(rule);
-        protected abstract void PrepareValidationRules(Input input);
+        protected abstract void PrepareValidationRules(Action input);
     }
 }
