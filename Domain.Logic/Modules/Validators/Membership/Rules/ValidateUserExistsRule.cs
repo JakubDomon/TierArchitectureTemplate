@@ -14,6 +14,6 @@ namespace Domain.Logic.Modules.Validators.Membership.Rules
             RuleFor(x => x).MustAsync((x, cancellation) => UserExists(x, cancellation)).WithMessage(MembershipValidationMessages.UserAlreadyExists);
         }
 
-        private async Task<bool> UserExists(string userLogin, CancellationToken cancellation) => await _userRepository.UserExists(userLogin);
+        private async Task<bool> UserExists(string userLogin, CancellationToken cancellation) => (await _userRepository.UserExists(userLogin)).Data;
     }
 }

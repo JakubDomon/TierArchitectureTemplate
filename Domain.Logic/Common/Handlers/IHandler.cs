@@ -5,7 +5,6 @@ namespace Domain.Logic.Common.Handlers
 {
     internal interface IHandler<Input, Output>
         where Input : IAction
-        where Output : class
     {
         public Task<HandlerResult<Output>> HandleAsync(Input request, CancellationToken ct);
     }

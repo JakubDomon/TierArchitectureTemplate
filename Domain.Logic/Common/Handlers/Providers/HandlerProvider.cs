@@ -13,7 +13,6 @@ namespace Domain.Logic.Common.Handlers.Providers
 
         public IHandler<Input, Output> GetHandler<Input, Output>()
             where Input : IAction
-            where Output : class
         {
             var handler = _serviceProvider.GetService(typeof(IHandler<Input, Output>));
 

@@ -1,4 +1,6 @@
-﻿using DataAccess.Logic.Repositories.Membership;
+﻿using DataAccess.DTO.Common.CommunicationObjects.Enums;
+using DataAccess.DTO.CommunicationObjects;
+using DataAccess.Logic.Repositories.Membership;
 using Domain.DTO.Commands.Specific.Membership;
 using Domain.Logic.Modules.Validators.Membership;
 using Domain.Tests.TestDataGenerators.Membership;
@@ -19,7 +21,11 @@ namespace Domain.Tests.Validators.Membership
             string[] existingUserLogins = ["validUser1", "validUser2"];
 
             userRepositoryMock.Setup(x => x.UserExists(It.IsAny<string>()))
-                .ReturnsAsync(existingUserLogins.Contains(request.UserName));
+                .ReturnsAsync(new DataOperationResult<bool>()
+                {
+                    Data = existingUserLogins.Contains(request.UserName),
+                    OperationDetail = OperationDetail.Ok,
+                });
 
             // Act
             var result = await validator.ValidateAsync(request);

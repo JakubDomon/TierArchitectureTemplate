@@ -26,7 +26,7 @@ namespace Domain.Logic.Modules.Handlers.Specific.Membership
         {
             User user = _mapper.Map<User>(request);
 
-            DataOperationResult<dataUserDto.UserDto> result = await _userRepository.RegisterAsync(_mapper.Map<dataUserDto.UserDto>(user), ct);
+            DataOperationResult<dataUserDto.UserDto> result = await _userRepository.CreateAsync(_mapper.Map<dataUserDto.UserDto>(user), ct);
 
             return result.IsSuccess
                 ? HandlerResultHelper.CreateHandlerResult(new RegisterUserDto(result?.Data.Id ?? Guid.Empty))

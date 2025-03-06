@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataAccess.DTO.Common.CommunicationObjects.Enums;
 using DataAccess.DTO.CommunicationObjects;
 using DataAccess.DTO.Membership;
 using DataAccess.Logic.Entities.Membership;
@@ -23,8 +24,8 @@ namespace DataAccess.Logic.Repositories.Membership
             IEnumerable<User> users = await _userManager.GetUsersInRoleAsync(roleName);
 
             return users is not null
-                ? DataOperationResponseHelper.CreateResponse(_mapper.Map<IEnumerable<UserDto>>(users))
-                : DataOperationResponseHelper.CreateResponse<IEnumerable<UserDto>>();
+                ? DataOperationResponseHelper.CreateResponse(_mapper.Map<IEnumerable<UserDto>>(users), OperationDetail.Ok)
+                : DataOperationResponseHelper.CreateResponse<IEnumerable<UserDto>>(operationResult: OperationDetail.NoContent);
         }
 
         public async Task<DataOperationResult<UserDto>> FindByIdAsync(Guid id, CancellationToken ct)
@@ -32,31 +33,31 @@ namespace DataAccess.Logic.Repositories.Membership
             User? user = await _userManager.FindByIdAsync(id.ToString());
 
             return user is not null
-                ? DataOperationResponseHelper.CreateResponse(_mapper.Map<UserDto>(user))
-                : DataOperationResponseHelper.CreateResponse<UserDto>();
+                ? DataOperationResponseHelper.CreateResponse(_mapper.Map<UserDto>(user), OperationDetail.Ok)
+                : DataOperationResponseHelper.CreateResponse<UserDto>(operationResult: OperationDetail.NotFound);
         }
 
-        public async Task<DataOperationResult<UserDto>> RegisterAsync(UserDto userDTO, CancellationToken ct)
+        public async Task<DataOperationResult<UserDto>> CreateAsync(UserDto userDTO, CancellationToken ct)
         {
             User user = _mapper.Map<User>(userDTO);
             IdentityResult result = await _userManager.CreateAsync(user, userDTO.Password ?? string.Empty);
 
             return result.Succeeded
-                ? DataOperationResponseHelper.CreateResponse(_mapper.Map<UserDto>(user))
-                : DataOperationResponseHelper.CreateResponse<UserDto>();
+                ? DataOperationResponseHelper.CreateResponse(_mapper.Map<UserDto>(user), OperationDetail.Created)
+                : DataOperationResponseHelper.CreateResponse<UserDto>(operationResult: OperationDetail.Error);
         }
 
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task<DataOperationResult<bool>> DeleteAsync(Guid id)
         {
             User? user = await _userManager.FindByIdAsync(id.ToString());
 
             if (user is not null)
             {
                 IdentityResult result = await _userManager.DeleteAsync(user);
-                return result.Succeeded;
+                return DataOperationResponseHelper.CreateResponse(true, operationResult: OperationDetail.NoContent);
             }
 
-            return false;
+            return DataOperationResponseHelper.CreateResponse(false, operationResult: OperationDetail.NotFound);
         }
 
         public async Task<DataOperationResult<UserDto>> UpdateAsync(Guid id, UserDto userDTO, CancellationToken ct)
@@ -77,7 +78,14 @@ namespace DataAccess.Logic.Repositories.Membership
                 : DataOperationResponseHelper.CreateResponse<UserDto>();
         }
 
-        public async Task<bool> UserExists(string login) => await _userManager.FindByNameAsync(login) != null;
+        public async Task<DataOperationResult<bool>> UserExists(string login)
+        {
+            var userExists = await _userManager.FindByNameAsync(login) != null;
+
+            return userExists
+                ? DataOperationResponseHelper.CreateResponse(true, OperationDetail.NoContent)
+                : DataOperationResponseHelper.CreateResponse(false, OperationDetail.NotFound);
+        }
 
         private void UpdateUserEntity(User user, User userNewData)
         {

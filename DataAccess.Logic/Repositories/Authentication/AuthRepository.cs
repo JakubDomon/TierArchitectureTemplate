@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataAccess.DTO.Authentication;
+using DataAccess.DTO.Common.CommunicationObjects.Enums;
 using DataAccess.DTO.CommunicationObjects;
 using DataAccess.DTO.Membership;
 using DataAccess.Logic.Entities.Membership;
@@ -26,11 +27,18 @@ namespace DataAccess.Logic.Repositories.Authentication
             var user = await _userManager.FindByNameAsync(login);
 
             if (user is null)
-                return DataOperationResponseHelper.CreateResponse<AuthResult>();
+                return DataOperationResponseHelper.CreateResponse<AuthResult>(operationResult: OperationDetail.Unauthorized);
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, password, false);
 
-            return DataOperationResponseHelper.CreateResponse(new AuthResult(result.Succeeded, result.Succeeded ? _mapper.Map<UserDto>(user) : default));
+            return DataOperationResponseHelper.CreateResponse(
+                new AuthResult(result.Succeeded, 
+                    result.Succeeded 
+                        ? _mapper.Map<UserDto>(user) 
+                        : default),
+                    result.Succeeded
+                        ? OperationDetail.Ok
+                        : OperationDetail.Unauthorized);
         }
     }
 }

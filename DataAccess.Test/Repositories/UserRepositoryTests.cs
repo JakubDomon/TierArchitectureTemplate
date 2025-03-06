@@ -66,7 +66,7 @@ namespace DataAccess.Tests.Repositories
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public async void RegisterAsync_ShouldReturnDataOperationResult(bool shouldUserCreationSucceed)
+        public async void CreateAsync_ShouldReturnDataOperationResult(bool shouldUserCreationSucceed)
         {
             CancellationToken cancellationToken = new CancellationToken();
 
@@ -92,7 +92,7 @@ namespace DataAccess.Tests.Repositories
                         }));
 
             // Act
-            DataOperationResult<UserDto> result = await _userRepository.RegisterAsync(userDto, cancellationToken);
+            DataOperationResult<UserDto> result = await _userRepository.CreateAsync(userDto, cancellationToken);
 
             // Assert
             if (shouldUserCreationSucceed)
@@ -134,7 +134,7 @@ namespace DataAccess.Tests.Repositories
                         }));
 
             // Act
-            bool result = await _userRepository.DeleteAsync(new Guid());
+            bool result = (await _userRepository.DeleteAsync(new Guid())).Data;
 
             // Assert
             if (shouldUserBeFound)
@@ -229,7 +229,7 @@ namespace DataAccess.Tests.Repositories
                 .ReturnsAsync(shouldFindUser ? foundUser : null);
 
             // Act
-            bool result = await _userRepository.UserExists("someUser");
+            bool result = (await _userRepository.UserExists("someUser")).Data;
 
             // Assert
             if (shouldFindUser)

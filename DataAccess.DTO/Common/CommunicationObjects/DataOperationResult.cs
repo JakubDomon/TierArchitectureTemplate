@@ -1,24 +1,15 @@
-﻿using System.Collections;
+﻿using DataAccess.DTO.Common.CommunicationObjects.Enums;
+using DataAccess.DTO.Common.CommunicationObjects.Helpers;
+using System.Collections;
 
 namespace DataAccess.DTO.CommunicationObjects
 {
     public record DataOperationResult<T>
     {
-        public bool IsSuccess 
-        { 
-            get 
-            {
-                if (Data is null)
-                    return false;
+        public OperationDetail OperationDetail { get; init; }
 
-                if(typeof(T) is ICollection collection)
-                {
-                    return collection.Count > 0;
-                }
+        public bool IsSuccess => DataOperationResultHelper.SuccessOperationDetails.Contains(OperationDetail);
 
-                return true;
-            } 
-        }
         public T? Data { get; init; }
     }
 }

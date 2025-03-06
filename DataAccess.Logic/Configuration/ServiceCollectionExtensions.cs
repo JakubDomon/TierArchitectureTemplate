@@ -4,12 +4,13 @@ using AutoMapper.Extensions.ExpressionMapping;
 using DataAccess.Logic.Contexts;
 using DataAccess.Logic.Entities.Membership;
 using DataAccess.Logic.Configuration.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Logic.Configuration
 {
     public static class ServiceCollectionExtensions
     {
-        public static void RegisterDataAccessServices(this IServiceCollection services)
+        public static void RegisterDataAccessServices(this IServiceCollection services, bool isDevelopment)
         {
             // Automapper
             services.AddAutoMapper(config =>
@@ -18,7 +19,15 @@ namespace DataAccess.Logic.Configuration
             }, Assembly.GetExecutingAssembly());
 
             // Database contexts
-            services.AddDbContext<MembershipContext>();
+            if (isDevelopment)
+            {
+                services.AddDbContext<MembershipContext>(options => options.UseInMemoryDatabase("InMemoryDb"));
+            }
+            else
+            {
+                services.AddDbContext<MembershipContext>();
+            }
+
             services.AddIdentityCore<User>()
                 .AddRoles<Role>()
                 .AddEntityFrameworkStores<MembershipContext>();

@@ -6,9 +6,9 @@ namespace API.DTO.Membership.Actions.LoginUser
     public record LoginUserRequest
     {
         [Required(ErrorMessageResourceName = "UserLoginRequired", ErrorMessageResourceType = typeof(MembershipValidationMessages))]
-        public string? UserLogin { get; init; }
+        public required string UserLogin { get; init; }
 
         [Required(ErrorMessageResourceName = "UserPasswordRequired", ErrorMessageResourceType = typeof(MembershipValidationMessages))]
-        public string? Password { get; init; }
+        public required string Password { get; init; }
     }
 }

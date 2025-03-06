@@ -37,7 +37,7 @@ namespace Domain.Tests.Handlers.Membership
             var request = new RegisterUserCommand("TestUserName", "TestPassword", "TestEmail@email.com", "FirstName", "LastName", "123123123");
             var dataOperationResult = new DataOperationResult<UserDto>() { Data =  new UserDto() { Id = Guid.NewGuid() } };
 
-            _userRepositoryMock.Setup(repo => repo.RegisterAsync(It.IsAny<UserDto>(), It.IsAny<CancellationToken>()))
+            _userRepositoryMock.Setup(repo => repo.CreateAsync(It.IsAny<UserDto>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(dataOperationResult);
             
 
@@ -57,7 +57,7 @@ namespace Domain.Tests.Handlers.Membership
             var request = new RegisterUserCommand("TestUserName", "TestPassword", "TestEmail@email.com", "FirstName", "LastName", "123123123");
             var dataOperationResult = new DataOperationResult<UserDto>();
 
-            _userRepositoryMock.Setup(repo => repo.RegisterAsync(It.IsAny<UserDto>(), It.IsAny<CancellationToken>()))
+            _userRepositoryMock.Setup(repo => repo.CreateAsync(It.IsAny<UserDto>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(dataOperationResult);
 
 

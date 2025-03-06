@@ -1,4 +1,5 @@
 ﻿using Domain.DTO.Common;
+using Domain.DTO.Interfaces.UnifiedBus;
 using Domain.Logic.Common.Communication.UnifiedCommunicationBus.Helpers;
 using Domain.Logic.Common.Handlers.Providers;
 using Domain.Logic.Common.Validators.Providers;
@@ -7,12 +8,12 @@ using Domain.Models.Validation.Specific;
 
 namespace Domain.Logic.Common.Communication.UnifiedCommunicationBus
 {
-    public class UnifiedCommunicationBus
+    public class UnifiedBus : IUnifiedBus
     {
         private IValidatorProvider _validatorProvider;
         private IHandlerProvider _handlerProvider;
 
-        internal UnifiedCommunicationBus(IValidatorProvider validatorProvider, IHandlerProvider handlerProvider)
+        internal UnifiedBus(IValidatorProvider validatorProvider, IHandlerProvider handlerProvider)
         {
             _validatorProvider = validatorProvider;
             _handlerProvider = handlerProvider;
@@ -20,7 +21,6 @@ namespace Domain.Logic.Common.Communication.UnifiedCommunicationBus
 
         public async Task<UnifiedResponse<Output>> ExecuteAsync<Input, Output>(UnifiedRequest<Input> request, CancellationToken ct)
             where Input : IAction
-            where Output : class, new()
         {
             ValidationResult validationResult = await _validatorProvider.GetValidator<Input>().ValidateAsync(request.Data);
 

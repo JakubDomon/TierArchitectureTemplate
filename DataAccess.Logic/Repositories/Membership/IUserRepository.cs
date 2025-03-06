@@ -8,8 +8,8 @@ namespace DataAccess.Logic.Repositories.Membership
         public Task<DataOperationResult<IEnumerable<UserDto>>> FindManyByRoleAsync(string roleName, CancellationToken ct);
         public Task<DataOperationResult<UserDto>> FindByIdAsync(Guid id, CancellationToken ct);
         public Task<DataOperationResult<UserDto>> UpdateAsync(Guid id, UserDto userDTO, CancellationToken ct);
-        public Task<DataOperationResult<UserDto>> RegisterAsync(UserDto userDTO, CancellationToken ct);
-        public Task<bool> UserExists(string login);
-        public Task<bool> DeleteAsync(Guid id);
+        public Task<DataOperationResult<UserDto>> CreateAsync(UserDto userDTO, CancellationToken ct);
+        public Task<DataOperationResult<bool>> UserExists(string login);
+        public Task<DataOperationResult<bool>> DeleteAsync(Guid id);
     }
 }
