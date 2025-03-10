@@ -1,4 +1,5 @@
 ﻿using Domain.DTO.Common;
+using Domain.DTO.Common.Enums;
 using Domain.DTO.Interfaces.UnifiedBus;
 using Domain.Logic.Common.Communication.UnifiedCommunicationBus.Helpers;
 using Domain.Logic.Common.Handlers.Providers;
@@ -26,7 +27,7 @@ namespace Domain.Logic.Common.Communication.UnifiedCommunicationBus
 
             if (!validationResult.IsSucceeded)
             {
-                return UnifiedCommunicationHelper.CreateValidationErrorResponse<Output>(validationResult);
+                return UnifiedCommunicationHelper.CreateValidationErrorResponse<Output>(validationResult, OperationDetail.BadRequest);
             }
 
             HandlerResult<Output> handlerResult = await _handlerProvider.GetHandler<Input, Output>().HandleAsync(request.Data, ct);

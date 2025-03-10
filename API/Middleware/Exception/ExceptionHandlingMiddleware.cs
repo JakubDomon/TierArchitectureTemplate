@@ -3,7 +3,7 @@ using System.Net;
 
 namespace API.Middleware.Exception
 {
-    public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger logger)
+    public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
     {
         public async Task InvokeAsync(HttpContext context)
         {

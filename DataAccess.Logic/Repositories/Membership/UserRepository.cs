@@ -60,12 +60,12 @@ namespace DataAccess.Logic.Repositories.Membership
             return DataOperationResponseHelper.CreateResponse(false, operationResult: OperationDetail.NotFound);
         }
 
-        public async Task<DataOperationResult<UserDto>> UpdateAsync(Guid id, UserDto userDTO, CancellationToken ct)
+        public async Task<DataOperationResult<bool>> UpdateAsync(Guid id, UserDto userDTO, CancellationToken ct)
         {
             User? user = await _userManager.FindByIdAsync(id.ToString());
 
             if (user is null)
-                return DataOperationResponseHelper.CreateResponse<UserDto>();
+                return DataOperationResponseHelper.CreateResponse(false, OperationDetail.NotFound);
 
             User userNewData = _mapper.Map<User>(userDTO);
 
@@ -74,8 +74,8 @@ namespace DataAccess.Logic.Repositories.Membership
             IdentityResult result = await _userManager.UpdateAsync(user);
 
             return result.Succeeded
-                ? DataOperationResponseHelper.CreateResponse(_mapper.Map<UserDto>(user))
-                : DataOperationResponseHelper.CreateResponse<UserDto>();
+                ? DataOperationResponseHelper.CreateResponse(true, OperationDetail.NoContent)
+                : DataOperationResponseHelper.CreateResponse(false, OperationDetail.Error);
         }
 
         public async Task<DataOperationResult<bool>> UserExists(string login)

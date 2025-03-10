@@ -5,7 +5,7 @@ using fv = FluentValidation;
 
 namespace Domain.Logic.Mapping.Common
 {
-    public class ValidationProfile : Profile
+    internal class ValidationProfile : Profile
     {
         public ValidationProfile()
         {

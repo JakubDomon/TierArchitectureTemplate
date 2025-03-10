@@ -23,5 +23,8 @@ namespace API.DTO.Membership.Actions.RegisterUser
         public string? FirstName { get; init; }
 
         public string? LastName { get; init; }
+
+        [RegularExpression(@"^\+?\d{1,3}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$", ErrorMessageResourceName = "PhoneNumberFormatNotValid", ErrorMessageResourceType = typeof(MembershipValidationMessages))]
+        public string? PhoneNumber { get; init; }
     }
 }

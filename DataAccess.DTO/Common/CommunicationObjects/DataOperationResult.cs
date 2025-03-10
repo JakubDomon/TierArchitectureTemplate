@@ -1,6 +1,5 @@
 ﻿using DataAccess.DTO.Common.CommunicationObjects.Enums;
 using DataAccess.DTO.Common.CommunicationObjects.Helpers;
-using System.Collections;
 
 namespace DataAccess.DTO.CommunicationObjects
 {

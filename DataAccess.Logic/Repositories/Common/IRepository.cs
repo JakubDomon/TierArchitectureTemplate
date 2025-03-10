@@ -11,7 +11,7 @@ namespace DataAccess.Logic.Repositories.Common
         public Task<DataOperationResult<TDto>> FindByIdAsync(Guid id, CancellationToken ct);
         public Task<DataOperationResult<IEnumerable<TDto>>> FindAsync(Expression<Func<TDto, bool>> predicate, CancellationToken ct);
         public Task<DataOperationResult<TDto>> AddAsync(TDto dto, CancellationToken ct);
-        public Task<DataOperationResult<TDto>> UpdateAsync(Guid id, TDto dto, CancellationToken ct);
+        public Task<DataOperationResult<bool>> UpdateAsync(Guid id, TDto dto, CancellationToken ct);
         public Task<bool> DeleteAsync(Guid id, CancellationToken ct);
         public Task<bool> DeleteManyAsync(Expression<Func<TDto, bool>> predicate, CancellationToken ct);
         public Task<bool> AnyAsync(CancellationToken ct);

@@ -18,15 +18,8 @@ namespace DataAccess.Logic.Configuration
                 config.AddExpressionMapping();
             }, Assembly.GetExecutingAssembly());
 
-            // Database contexts
-            if (isDevelopment)
-            {
-                services.AddDbContext<MembershipContext>(options => options.UseInMemoryDatabase("InMemoryDb"));
-            }
-            else
-            {
-                services.AddDbContext<MembershipContext>();
-            }
+
+            services.AddDbContext<MembershipContext>();
 
             services.AddIdentityCore<User>()
                 .AddRoles<Role>()

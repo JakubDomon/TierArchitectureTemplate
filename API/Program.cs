@@ -7,18 +7,13 @@ using Microsoft.AspNetCore.Localization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// DotNetEnv
-DotNetEnv.Env.Load();
-builder.Configuration.AddEnvironmentVariables();
-
 // Add Serilog support
 builder.Logging.ClearProviders();
 builder.Host.UseSerilog((context, configuration) => 
     configuration.ReadFrom.Configuration(context.Configuration));
-builder.Logging.AddSerilog();
 
 // Localization
-builder.Services.AddLocalization(options => options.ResourcesPath = "DTO/MessagesResources");
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources/MessagesResources");
 
 // Controllers
 builder.Services.AddControllers(opt =>

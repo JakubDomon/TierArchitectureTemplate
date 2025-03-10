@@ -1,4 +1,5 @@
 ﻿using API.DTO.Membership.Actions.LoginUser;
+using API.DTO.Membership.Actions.RegisterUser;
 using API.Helpers;
 using Domain.DTO.Commands.Specific.Membership;
 using Domain.DTO.Common;
@@ -29,6 +30,12 @@ namespace API.Controllers.Authentication
             {
                 return BadRequest(result);
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterUserRequest request, CancellationToken ct)
+        {
+            var registerCommand = new RegisterUserCommand(request.UserName, request.Password, request.Email, request.FirstName, request.LastName, request.PhoneNumber);
         }
     }
 }

@@ -190,26 +190,20 @@ namespace DataAccess.Tests.Repositories
                 .ReturnsAsync(IdentityResult.Success);
 
             // Act
-            DataOperationResult<UserDto> result = await _userRepository.UpdateAsync(new Guid(), newUserData, cancellationToken);
+            DataOperationResult<bool> result = await _userRepository.UpdateAsync(new Guid(), newUserData, cancellationToken);
 
             // Assert
             if (shouldUserBeFound)
             {
                 Assert.NotNull(result);
-                Assert.NotNull(result.Data);
                 Assert.True(result.IsSuccess);
-
-                Assert.Equal(result.Data.FirstName, newUserData.FirstName);
-                Assert.Equal(result.Data.LastName, newUserData.LastName);
-                Assert.Equal(result.Data.Email, newUserData.Email);
-                Assert.Equal(result.Data.PhoneNumber, newUserData.PhoneNumber);
-                Assert.Equal(result.Data.UserName, newUserData.UserName);
+                Assert.True(result.Data);
             }
             else
             {
                 Assert.NotNull(result);
-                Assert.Null(result.Data);
                 Assert.False(result.IsSuccess);
+                Assert.False(result.Data);
             }
         }
 

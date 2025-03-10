@@ -3,6 +3,7 @@ using DataAccess.DTO.Authentication;
 using DataAccess.DTO.CommunicationObjects;
 using DataAccess.Logic.Repositories.Authentication;
 using Domain.DTO.Commands.Specific.Membership;
+using Domain.DTO.Common.Enums;
 using Domain.DTO.Models.Membership;
 using Domain.Logic.Common.Handlers;
 using Domain.Logic.Modules.Handlers.Helpers;
@@ -28,14 +29,14 @@ namespace Domain.Logic.Modules.Handlers.Specific.Membership
 
         public async Task<HandlerResult<AuthenticateUserDto>> HandleAsync(AuthenticateUserCommand request, CancellationToken ct)
         {
-            DataOperationResult<AuthResult> result = await _authRepository.AuthenticateAsync(request.Login, request.Password, ct);
+            DataOperationResult<AuthResult> dbResult = await _authRepository.AuthenticateAsync(request.Login, request.Password, ct);
 
-            if (!result.IsSuccess)
-                return HandlerResultHelper.CreateHandlerResult<AuthenticateUserDto>();
+            if (!dbResult.IsSuccess)
+                return HandlerResultHelper.CreateHandlerResult<AuthenticateUserDto>(operationDetail: _mapper.Map<OperationDetail>(dbResult.OperationDetail));
 
-            User user = _mapper.Map<User>(result.Data?.UserData);
+            User user = _mapper.Map<User>(dbResult.Data?.UserData);
 
-            return HandlerResultHelper.CreateHandlerResult(new AuthenticateUserDto(JwtHelper.GenerateJwt(user, _config)));
+            return HandlerResultHelper.CreateHandlerResult(new AuthenticateUserDto(JwtHelper.GenerateJwt(user, _config)), operationDetail: OperationDetail.Ok);
         }
     }
 }

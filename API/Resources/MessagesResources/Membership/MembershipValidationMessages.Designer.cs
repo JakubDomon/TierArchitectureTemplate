@@ -61,6 +61,15 @@ namespace API.Resources.MessagesResources.Membership {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User phone number format is not valid.
+        /// </summary>
+        internal static string PhoneNumberFormatNotValid {
+            get {
+                return ResourceManager.GetString("PhoneNumberFormatNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User login is required.
         /// </summary>
         internal static string UserLoginRequired {

@@ -80,6 +80,6 @@ namespace DataAccess.Logic.Repositories.Common
 
         public abstract Task<DataOperationResult<TDto>> FindByIdAsync(Guid id, CancellationToken ct);
 
-        public abstract Task<DataOperationResult<TDto>> UpdateAsync(Guid id, TDto entity, CancellationToken ct);
+        public abstract Task<DataOperationResult<bool>> UpdateAsync(Guid id, TDto entity, CancellationToken ct);
     }
 }

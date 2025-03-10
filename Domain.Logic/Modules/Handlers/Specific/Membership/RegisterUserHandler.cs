@@ -8,6 +8,7 @@ using Domain.Models.Handlers.Specific;
 using Domain.Logic.Modules.Handlers.Helpers;
 using Domain.DTO.Commands.Specific.Membership;
 using Domain.DTO.Models.Membership;
+using Domain.DTO.Common.Enums;
 
 namespace Domain.Logic.Modules.Handlers.Specific.Membership
 {
@@ -26,11 +27,11 @@ namespace Domain.Logic.Modules.Handlers.Specific.Membership
         {
             User user = _mapper.Map<User>(request);
 
-            DataOperationResult<dataUserDto.UserDto> result = await _userRepository.CreateAsync(_mapper.Map<dataUserDto.UserDto>(user), ct);
+            DataOperationResult<dataUserDto.UserDto> dbResult = await _userRepository.CreateAsync(_mapper.Map<dataUserDto.UserDto>(user), ct);
 
-            return result.IsSuccess
-                ? HandlerResultHelper.CreateHandlerResult(new RegisterUserDto(result?.Data.Id ?? Guid.Empty))
-                : HandlerResultHelper.CreateHandlerResult<RegisterUserDto>();
+            return dbResult.IsSuccess
+                ? HandlerResultHelper.CreateHandlerResult(new RegisterUserDto(dbResult?.Data?.Id ?? Guid.Empty), operationDetail: _mapper.Map<OperationDetail>(dbResult?.OperationDetail))
+                : HandlerResultHelper.CreateHandlerResult<RegisterUserDto>(operationDetail: _mapper.Map<OperationDetail>(dbResult?.OperationDetail));
         }
     }
 }

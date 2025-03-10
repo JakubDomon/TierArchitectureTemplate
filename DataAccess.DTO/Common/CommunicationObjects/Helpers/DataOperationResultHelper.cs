@@ -2,7 +2,7 @@
 
 namespace DataAccess.DTO.Common.CommunicationObjects.Helpers
 {
-    public static class DataOperationResultHelper
+    internal static class DataOperationResultHelper
     {
         public static readonly List<OperationDetail> SuccessOperationDetails = [OperationDetail.Ok, OperationDetail.Created, OperationDetail.NoContent];
     }

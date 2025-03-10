@@ -4,7 +4,7 @@ using DataAccess.DTO.Membership;
 
 namespace Domain.Logic.Mapping.Membership
 {
-    public class UserProfile : Profile
+    internal class UserProfile : Profile
     {
         public UserProfile()
         {
