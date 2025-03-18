@@ -1,4 +1,5 @@
-﻿using API.DTO.Membership.Actions.LoginUser;
+﻿using API.Attributes.Controllers;
+using API.DTO.Membership.Actions.LoginUser;
 using API.DTO.Membership.Actions.RegisterUser;
 using API.Helpers;
 using Domain.DTO.Commands.Specific.Membership;
@@ -14,28 +15,30 @@ namespace API.Controllers.Authentication
     [ApiController]
     public class AuthController(IUnifiedBus unifiedBus) : ApiBaseController
     {
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<IActionResult> Login(LoginUserRequest request, CancellationToken ct)
         {
-            var loginCommand = new AuthenticateUserCommand(request.UserLogin, request.Password);
-            var unifiedRequest = loginCommand.WrapAsUnifiedRequest();
+            var unifiedRequest = new AuthenticateUserCommand(request.UserLogin,
+                    request.Password)
+                .WrapAsUnifiedRequest();
 
             var result = await unifiedBus.ExecuteAsync<AuthenticateUserCommand, AuthenticateUserDto>(unifiedRequest, ct);
-
-            if (result.IsSuccess)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return BadRequest(result);
-            }
+            return OperationResultApiResolver.Resolve(result.OperationDetail, result.Data, null, result.Messages.ToArray());
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterUserRequest request, CancellationToken ct)
         {
-            var registerCommand = new RegisterUserCommand(request.UserName, request.Password, request.Email, request.FirstName, request.LastName, request.PhoneNumber);
+            var unifiedRequest = new RegisterUserCommand(request.UserName,
+                    request.Password,
+                    request.Email,
+                    request.FirstName,
+                    request.LastName,
+                    request.PhoneNumber)
+                .WrapAsUnifiedRequest();
+
+            var result = await unifiedBus.ExecuteAsync<RegisterUserCommand, RegisterUserDto>(unifiedRequest, ct);
+            return OperationResultApiResolver.Resolve(result.OperationDetail, result.Data, null, result.Messages.ToArray());
         }
     }
 }
